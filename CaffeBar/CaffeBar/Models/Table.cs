@@ -43,7 +43,7 @@ namespace CaffeBar
 
         public override string ToString()
         {
-            return string.Format("{0} - {1} - {2} - {3}", TableId, NumberOfSeats, TableAvalaible);
+            return string.Format("Table Number:{0} - Number of seats:{1}", TableId, NumberOfSeats);
         }
     }
 }

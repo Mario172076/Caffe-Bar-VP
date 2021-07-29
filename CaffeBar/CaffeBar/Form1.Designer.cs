@@ -235,6 +235,7 @@ namespace CaffeBar
             this.btnRegisterF1.TabIndex = 3;
             this.btnRegisterF1.Text = "Register";
             this.btnRegisterF1.UseVisualStyleBackColor = true;
+            this.btnRegisterF1.Click += new System.EventHandler(this.btnRegisterF1_Click);
             // 
             // tbAddressReg
             // 
@@ -242,6 +243,7 @@ namespace CaffeBar
             this.tbAddressReg.Name = "tbAddressReg";
             this.tbAddressReg.Size = new System.Drawing.Size(100, 20);
             this.tbAddressReg.TabIndex = 10;
+            this.tbAddressReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbAddressReg_Validating);
             // 
             // tbAgeReg
             // 
@@ -249,6 +251,7 @@ namespace CaffeBar
             this.tbAgeReg.Name = "tbAgeReg";
             this.tbAgeReg.Size = new System.Drawing.Size(100, 20);
             this.tbAgeReg.TabIndex = 9;
+            this.tbAgeReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbAgeReg_Validating);
             // 
             // tbRepPasswordReg
             // 
@@ -256,6 +259,7 @@ namespace CaffeBar
             this.tbRepPasswordReg.Name = "tbRepPasswordReg";
             this.tbRepPasswordReg.Size = new System.Drawing.Size(100, 20);
             this.tbRepPasswordReg.TabIndex = 8;
+            this.tbRepPasswordReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbRepPasswordReg_Validating);
             // 
             // tbPasswordReg
             // 
@@ -263,6 +267,7 @@ namespace CaffeBar
             this.tbPasswordReg.Name = "tbPasswordReg";
             this.tbPasswordReg.Size = new System.Drawing.Size(100, 20);
             this.tbPasswordReg.TabIndex = 7;
+            this.tbPasswordReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbPasswordReg_Validating);
             // 
             // tbUsernameReg
             // 
@@ -270,6 +275,7 @@ namespace CaffeBar
             this.tbUsernameReg.Name = "tbUsernameReg";
             this.tbUsernameReg.Size = new System.Drawing.Size(100, 20);
             this.tbUsernameReg.TabIndex = 6;
+            this.tbUsernameReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbUsernameReg_Validating);
             // 
             // tbTelephoneReg
             // 
@@ -277,6 +283,7 @@ namespace CaffeBar
             this.tbTelephoneReg.Name = "tbTelephoneReg";
             this.tbTelephoneReg.Size = new System.Drawing.Size(100, 20);
             this.tbTelephoneReg.TabIndex = 5;
+            this.tbTelephoneReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbTelephoneReg_Validating);
             // 
             // tbEmailReg
             // 
@@ -284,6 +291,7 @@ namespace CaffeBar
             this.tbEmailReg.Name = "tbEmailReg";
             this.tbEmailReg.Size = new System.Drawing.Size(100, 20);
             this.tbEmailReg.TabIndex = 4;
+            this.tbEmailReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbEmailReg_Validating);
             // 
             // tbSurnameReg
             // 
@@ -291,6 +299,7 @@ namespace CaffeBar
             this.tbSurnameReg.Name = "tbSurnameReg";
             this.tbSurnameReg.Size = new System.Drawing.Size(100, 20);
             this.tbSurnameReg.TabIndex = 3;
+            this.tbSurnameReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbSurnameReg_Validating);
             // 
             // tbNameReg
             // 
@@ -298,6 +307,7 @@ namespace CaffeBar
             this.tbNameReg.Name = "tbNameReg";
             this.tbNameReg.Size = new System.Drawing.Size(100, 20);
             this.tbNameReg.TabIndex = 2;
+            this.tbNameReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbNameReg_Validating);
             // 
             // errorProvider1
             // 

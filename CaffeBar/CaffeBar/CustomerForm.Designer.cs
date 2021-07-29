@@ -58,7 +58,7 @@ namespace CaffeBar
             this.tbAddressOrderCF = new System.Windows.Forms.TextBox();
             this.tbNameOrderCF = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lbProductsCF = new System.Windows.Forms.ListBox();
+            this.lbCoffesCF = new System.Windows.Forms.ListBox();
             this.btnAddProToResCF = new System.Windows.Forms.Button();
             this.btnAddProToOrderCF = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -68,6 +68,19 @@ namespace CaffeBar
             this.btnLogoutCF = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.tbLoggedUserCF = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lbBeersCF = new System.Windows.Forms.ListBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lbWhiskyCF = new System.Windows.Forms.ListBox();
+            this.lbJuicesCF = new System.Windows.Forms.ListBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lbSodaCF = new System.Windows.Forms.ListBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lbPizzasCF = new System.Windows.Forms.ListBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.lbBurgersCF = new System.Windows.Forms.ListBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -336,27 +349,40 @@ namespace CaffeBar
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.lbProductsCF);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.lbBurgersCF);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.lbPizzasCF);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.lbSodaCF);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.lbJuicesCF);
+            this.groupBox3.Controls.Add(this.lbWhiskyCF);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.lbBeersCF);
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.lbCoffesCF);
             this.groupBox3.Controls.Add(this.btnAddProToResCF);
             this.groupBox3.Controls.Add(this.btnAddProToOrderCF);
-            this.groupBox3.Location = new System.Drawing.Point(465, 30);
+            this.groupBox3.Location = new System.Drawing.Point(23, 396);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 347);
+            this.groupBox3.Size = new System.Drawing.Size(641, 315);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "PRODUCTS";
+            this.groupBox3.Text = "MENU";
             // 
-            // lbProductsCF
+            // lbCoffesCF
             // 
-            this.lbProductsCF.FormattingEnabled = true;
-            this.lbProductsCF.Location = new System.Drawing.Point(43, 35);
-            this.lbProductsCF.Name = "lbProductsCF";
-            this.lbProductsCF.Size = new System.Drawing.Size(120, 95);
-            this.lbProductsCF.TabIndex = 14;
+            this.lbCoffesCF.FormattingEnabled = true;
+            this.lbCoffesCF.Location = new System.Drawing.Point(20, 33);
+            this.lbCoffesCF.Name = "lbCoffesCF";
+            this.lbCoffesCF.Size = new System.Drawing.Size(120, 95);
+            this.lbCoffesCF.TabIndex = 14;
             // 
             // btnAddProToResCF
             // 
-            this.btnAddProToResCF.Location = new System.Drawing.Point(21, 194);
+            this.btnAddProToResCF.Location = new System.Drawing.Point(453, 166);
             this.btnAddProToResCF.Name = "btnAddProToResCF";
             this.btnAddProToResCF.Size = new System.Drawing.Size(162, 23);
             this.btnAddProToResCF.TabIndex = 13;
@@ -365,7 +391,7 @@ namespace CaffeBar
             // 
             // btnAddProToOrderCF
             // 
-            this.btnAddProToOrderCF.Location = new System.Drawing.Point(21, 156);
+            this.btnAddProToOrderCF.Location = new System.Drawing.Point(453, 227);
             this.btnAddProToOrderCF.Name = "btnAddProToOrderCF";
             this.btnAddProToOrderCF.Size = new System.Drawing.Size(162, 23);
             this.btnAddProToOrderCF.TabIndex = 12;
@@ -377,9 +403,9 @@ namespace CaffeBar
             this.groupBox4.Controls.Add(this.lbTablesCF);
             this.groupBox4.Controls.Add(this.btnAddTableToResCF);
             this.groupBox4.Controls.Add(this.btnAddTableToOrderCF);
-            this.groupBox4.Location = new System.Drawing.Point(682, 30);
+            this.groupBox4.Location = new System.Drawing.Point(464, 30);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(200, 347);
+            this.groupBox4.Size = new System.Drawing.Size(323, 347);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "TABLES";
@@ -389,12 +415,12 @@ namespace CaffeBar
             this.lbTablesCF.FormattingEnabled = true;
             this.lbTablesCF.Location = new System.Drawing.Point(42, 35);
             this.lbTablesCF.Name = "lbTablesCF";
-            this.lbTablesCF.Size = new System.Drawing.Size(120, 95);
+            this.lbTablesCF.Size = new System.Drawing.Size(264, 95);
             this.lbTablesCF.TabIndex = 15;
             // 
             // btnAddTableToResCF
             // 
-            this.btnAddTableToResCF.Location = new System.Drawing.Point(25, 194);
+            this.btnAddTableToResCF.Location = new System.Drawing.Point(94, 182);
             this.btnAddTableToResCF.Name = "btnAddTableToResCF";
             this.btnAddTableToResCF.Size = new System.Drawing.Size(154, 23);
             this.btnAddTableToResCF.TabIndex = 15;
@@ -403,7 +429,7 @@ namespace CaffeBar
             // 
             // btnAddTableToOrderCF
             // 
-            this.btnAddTableToOrderCF.Location = new System.Drawing.Point(25, 156);
+            this.btnAddTableToOrderCF.Location = new System.Drawing.Point(94, 153);
             this.btnAddTableToOrderCF.Name = "btnAddTableToOrderCF";
             this.btnAddTableToOrderCF.Size = new System.Drawing.Size(154, 23);
             this.btnAddTableToOrderCF.TabIndex = 14;
@@ -412,9 +438,9 @@ namespace CaffeBar
             // 
             // btnLogoutCF
             // 
-            this.btnLogoutCF.Location = new System.Drawing.Point(216, 388);
+            this.btnLogoutCF.Location = new System.Drawing.Point(670, 657);
             this.btnLogoutCF.Name = "btnLogoutCF";
-            this.btnLogoutCF.Size = new System.Drawing.Size(200, 54);
+            this.btnLogoutCF.Size = new System.Drawing.Size(100, 54);
             this.btnLogoutCF.TabIndex = 4;
             this.btnLogoutCF.Text = "Logout";
             this.btnLogoutCF.UseVisualStyleBackColor = true;
@@ -423,7 +449,7 @@ namespace CaffeBar
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(81, 388);
+            this.label13.Location = new System.Drawing.Point(667, 621);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(71, 13);
             this.label13.TabIndex = 5;
@@ -431,16 +457,127 @@ namespace CaffeBar
             // 
             // tbLoggedUserCF
             // 
-            this.tbLoggedUserCF.Location = new System.Drawing.Point(84, 404);
+            this.tbLoggedUserCF.Location = new System.Drawing.Point(670, 637);
             this.tbLoggedUserCF.Name = "tbLoggedUserCF";
             this.tbLoggedUserCF.Size = new System.Drawing.Size(100, 20);
             this.tbLoggedUserCF.TabIndex = 6;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(20, 20);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "Coffes";
+            // 
+            // lbBeersCF
+            // 
+            this.lbBeersCF.FormattingEnabled = true;
+            this.lbBeersCF.Location = new System.Drawing.Point(160, 33);
+            this.lbBeersCF.Name = "lbBeersCF";
+            this.lbBeersCF.Size = new System.Drawing.Size(120, 95);
+            this.lbBeersCF.TabIndex = 16;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(160, 19);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(34, 13);
+            this.label15.TabIndex = 17;
+            this.label15.Text = "Beers";
+            // 
+            // lbWhiskyCF
+            // 
+            this.lbWhiskyCF.FormattingEnabled = true;
+            this.lbWhiskyCF.Location = new System.Drawing.Point(306, 33);
+            this.lbWhiskyCF.Name = "lbWhiskyCF";
+            this.lbWhiskyCF.Size = new System.Drawing.Size(120, 95);
+            this.lbWhiskyCF.TabIndex = 18;
+            // 
+            // lbJuicesCF
+            // 
+            this.lbJuicesCF.FormattingEnabled = true;
+            this.lbJuicesCF.Location = new System.Drawing.Point(453, 33);
+            this.lbJuicesCF.Name = "lbJuicesCF";
+            this.lbJuicesCF.Size = new System.Drawing.Size(120, 95);
+            this.lbJuicesCF.TabIndex = 19;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(306, 19);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(42, 13);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "Whisky";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(450, 20);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(37, 13);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "Juices";
+            // 
+            // lbSodaCF
+            // 
+            this.lbSodaCF.FormattingEnabled = true;
+            this.lbSodaCF.Location = new System.Drawing.Point(20, 166);
+            this.lbSodaCF.Name = "lbSodaCF";
+            this.lbSodaCF.Size = new System.Drawing.Size(120, 95);
+            this.lbSodaCF.TabIndex = 22;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(20, 150);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(32, 13);
+            this.label18.TabIndex = 23;
+            this.label18.Text = "Soda";
+            // 
+            // lbPizzasCF
+            // 
+            this.lbPizzasCF.FormattingEnabled = true;
+            this.lbPizzasCF.Location = new System.Drawing.Point(160, 166);
+            this.lbPizzasCF.Name = "lbPizzasCF";
+            this.lbPizzasCF.Size = new System.Drawing.Size(120, 95);
+            this.lbPizzasCF.TabIndex = 24;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(160, 150);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(37, 13);
+            this.label19.TabIndex = 25;
+            this.label19.Text = "Pizzas";
+            // 
+            // lbBurgersCF
+            // 
+            this.lbBurgersCF.FormattingEnabled = true;
+            this.lbBurgersCF.Location = new System.Drawing.Point(306, 166);
+            this.lbBurgersCF.Name = "lbBurgersCF";
+            this.lbBurgersCF.Size = new System.Drawing.Size(120, 95);
+            this.lbBurgersCF.TabIndex = 26;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(302, 151);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(43, 13);
+            this.label20.TabIndex = 27;
+            this.label20.Text = "Burgers";
             // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 455);
+            this.ClientSize = new System.Drawing.Size(799, 735);
             this.Controls.Add(this.tbLoggedUserCF);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.btnLogoutCF);
@@ -456,6 +593,7 @@ namespace CaffeBar
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -487,7 +625,7 @@ namespace CaffeBar
         private System.Windows.Forms.ComboBox cbProductsOrderCF;
         private System.Windows.Forms.TextBox tbAddressOrderCF;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListBox lbProductsCF;
+        private System.Windows.Forms.ListBox lbCoffesCF;
         private System.Windows.Forms.Button btnAddProToResCF;
         private System.Windows.Forms.Button btnAddProToOrderCF;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -503,5 +641,18 @@ namespace CaffeBar
         public System.Windows.Forms.TextBox tbResNameCF;
         public System.Windows.Forms.TextBox tbNameOrderCF;
         public System.Windows.Forms.TextBox tbLoggedUserCF;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ListBox lbJuicesCF;
+        private System.Windows.Forms.ListBox lbWhiskyCF;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ListBox lbBeersCF;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ListBox lbBurgersCF;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ListBox lbPizzasCF;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ListBox lbSodaCF;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
     }
 }

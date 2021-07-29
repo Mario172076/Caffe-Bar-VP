@@ -59,7 +59,7 @@ namespace CaffeBar.Models
 
         public override string ToString()
         {
-            return string.Format("{0} - {1} - {2} - {3}", ProName, ProPrice, ProDescription, ProCategory.CatName);
+            return string.Format("{0} - {1}ден", ProName, ProPrice);
         }
     }
 }
