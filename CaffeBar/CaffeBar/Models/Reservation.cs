@@ -38,6 +38,11 @@ namespace CaffeBar.Models
         [Column("priceRes")]
         public int? PriceRes { get; set; }
 
+        public Reservation()
+        {
+
+        }
+
         public Reservation(int ResId, int CustId, int TableId, DateTime DateRes, int NumPeople, int? MinPriceRes, int? PriceRes)
         {
             this.ResId = ResId;

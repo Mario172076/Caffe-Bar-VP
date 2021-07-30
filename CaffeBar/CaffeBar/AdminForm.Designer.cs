@@ -63,6 +63,7 @@ namespace CaffeBar
             this.btnLogoutAF = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbLoggedAdminAF = new System.Windows.Forms.TextBox();
+            this.btnReceiptOrderAF = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -305,6 +306,7 @@ namespace CaffeBar
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnReceiptOrderAF);
             this.groupBox2.Controls.Add(this.lbOrdersAF);
             this.groupBox2.Controls.Add(this.btnViewOrderAF);
             this.groupBox2.Controls.Add(this.btnDeliverOrderAF);
@@ -389,6 +391,15 @@ namespace CaffeBar
             this.tbLoggedAdminAF.Size = new System.Drawing.Size(100, 20);
             this.tbLoggedAdminAF.TabIndex = 39;
             // 
+            // btnReceiptOrderAF
+            // 
+            this.btnReceiptOrderAF.Location = new System.Drawing.Point(34, 205);
+            this.btnReceiptOrderAF.Name = "btnReceiptOrderAF";
+            this.btnReceiptOrderAF.Size = new System.Drawing.Size(120, 23);
+            this.btnReceiptOrderAF.TabIndex = 7;
+            this.btnReceiptOrderAF.Text = "Give receipt";
+            this.btnReceiptOrderAF.UseVisualStyleBackColor = true;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -453,5 +464,6 @@ namespace CaffeBar
         private System.Windows.Forms.Button btnLogoutAF;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox tbLoggedAdminAF;
+        private System.Windows.Forms.Button btnReceiptOrderAF;
     }
 }

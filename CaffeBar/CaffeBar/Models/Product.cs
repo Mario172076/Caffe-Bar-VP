@@ -61,6 +61,8 @@ namespace CaffeBar.Models
         {
             return string.Format("{0} - {1}ден", ProName, ProPrice);
         }
+
+       
     }
 }
 

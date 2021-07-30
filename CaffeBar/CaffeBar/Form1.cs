@@ -24,6 +24,7 @@ namespace CaffeBar
         {
             using (var context = new ModelContext())
             {
+                //ne prepoznava golema bukva
                 Customer customer = context.Customer.Where(c => c.CustUsername == tbUsernameLogin.Text && c.CustPassword == tbLoginPassword.Text).FirstOrDefault();
                 Employee employee = context.Employee.Where(em => em.EmpUsername == tbUsernameLogin.Text && em.EmpPassword == tbLoginPassword.Text).FirstOrDefault();
                 if (customer != null)
