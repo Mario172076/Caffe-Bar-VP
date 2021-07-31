@@ -81,6 +81,8 @@ namespace CaffeBar
             DialogResult = DialogResult.Cancel;
         }
 
+        //validation for adding table
+
         private void tbNumSeatsATF_Validating(object sender, CancelEventArgs e)
         {
             if (!tbNumSeatsATF.Text.All(char.IsDigit))

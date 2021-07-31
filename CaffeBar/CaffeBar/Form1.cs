@@ -68,7 +68,7 @@ namespace CaffeBar
                     customer.CustTelephone = tbTelephoneReg.Text;
                     customer.CustUsername = tbUsernameReg.Text;
                     customer.CustPassword = tbPasswordReg.Text;
-                    customer.Age = tbAddressReg.Text;
+                    customer.Age = tbAgeReg.Text;
                     customer.Address = tbAddressReg.Text;
                     context.Customer.Add(customer);
                     if (context.SaveChanges() > 0)

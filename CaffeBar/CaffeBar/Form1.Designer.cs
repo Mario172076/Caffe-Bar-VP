@@ -110,6 +110,7 @@ namespace CaffeBar
             this.tbLoginPassword.Name = "tbLoginPassword";
             this.tbLoginPassword.Size = new System.Drawing.Size(100, 20);
             this.tbLoginPassword.TabIndex = 1;
+            this.tbLoginPassword.UseSystemPasswordChar = true;
             // 
             // tbUsernameLogin
             // 
@@ -259,6 +260,7 @@ namespace CaffeBar
             this.tbRepPasswordReg.Name = "tbRepPasswordReg";
             this.tbRepPasswordReg.Size = new System.Drawing.Size(100, 20);
             this.tbRepPasswordReg.TabIndex = 8;
+            this.tbRepPasswordReg.UseSystemPasswordChar = true;
             this.tbRepPasswordReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbRepPasswordReg_Validating);
             // 
             // tbPasswordReg
@@ -267,6 +269,7 @@ namespace CaffeBar
             this.tbPasswordReg.Name = "tbPasswordReg";
             this.tbPasswordReg.Size = new System.Drawing.Size(100, 20);
             this.tbPasswordReg.TabIndex = 7;
+            this.tbPasswordReg.UseSystemPasswordChar = true;
             this.tbPasswordReg.Validating += new System.ComponentModel.CancelEventHandler(this.tbPasswordReg_Validating);
             // 
             // tbUsernameReg
