@@ -29,6 +29,7 @@ namespace CaffeBar
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbNumSeatsATF = new System.Windows.Forms.TextBox();
             this.cbAvalaibleATF = new System.Windows.Forms.ComboBox();
             this.btnAddTableATF = new System.Windows.Forms.Button();
@@ -36,6 +37,9 @@ namespace CaffeBar
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbEmployeeATF = new System.Windows.Forms.ComboBox();
+            this.btnCancelATF = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbNumSeatsATF
@@ -44,6 +48,7 @@ namespace CaffeBar
             this.tbNumSeatsATF.Name = "tbNumSeatsATF";
             this.tbNumSeatsATF.Size = new System.Drawing.Size(100, 20);
             this.tbNumSeatsATF.TabIndex = 1;
+            this.tbNumSeatsATF.Validating += new System.ComponentModel.CancelEventHandler(this.tbNumSeatsATF_Validating);
             // 
             // cbAvalaibleATF
             // 
@@ -55,6 +60,7 @@ namespace CaffeBar
             this.cbAvalaibleATF.Name = "cbAvalaibleATF";
             this.cbAvalaibleATF.Size = new System.Drawing.Size(97, 21);
             this.cbAvalaibleATF.TabIndex = 2;
+            this.cbAvalaibleATF.Validating += new System.ComponentModel.CancelEventHandler(this.cbAvalaibleATF_Validating);
             // 
             // btnAddTableATF
             // 
@@ -64,6 +70,7 @@ namespace CaffeBar
             this.btnAddTableATF.TabIndex = 3;
             this.btnAddTableATF.Text = "Add Table";
             this.btnAddTableATF.UseVisualStyleBackColor = true;
+            this.btnAddTableATF.Click += new System.EventHandler(this.btnAddTableATF_Click);
             // 
             // label2
             // 
@@ -99,12 +106,28 @@ namespace CaffeBar
             this.cbEmployeeATF.Name = "cbEmployeeATF";
             this.cbEmployeeATF.Size = new System.Drawing.Size(97, 21);
             this.cbEmployeeATF.TabIndex = 8;
+            this.cbEmployeeATF.Validating += new System.ComponentModel.CancelEventHandler(this.cbEmployeeATF_Validating);
+            // 
+            // btnCancelATF
+            // 
+            this.btnCancelATF.Location = new System.Drawing.Point(39, 206);
+            this.btnCancelATF.Name = "btnCancelATF";
+            this.btnCancelATF.Size = new System.Drawing.Size(97, 23);
+            this.btnCancelATF.TabIndex = 9;
+            this.btnCancelATF.Text = "Cancel";
+            this.btnCancelATF.UseVisualStyleBackColor = true;
+            this.btnCancelATF.Click += new System.EventHandler(this.btnCancelATF_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // AddTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(198, 265);
+            this.Controls.Add(this.btnCancelATF);
             this.Controls.Add(this.cbEmployeeATF);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
@@ -114,6 +137,7 @@ namespace CaffeBar
             this.Controls.Add(this.tbNumSeatsATF);
             this.Name = "AddTableForm";
             this.Text = "AddTableForm";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +152,7 @@ namespace CaffeBar
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbEmployeeATF;
+        private System.Windows.Forms.Button btnCancelATF;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

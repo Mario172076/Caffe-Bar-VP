@@ -151,6 +151,7 @@ namespace CaffeBar
             this.Controls.Add(this.tbTableNumTIF);
             this.Name = "TableInfoForm";
             this.Text = "TableInfoForm";
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,12 +163,12 @@ namespace CaffeBar
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbEmployeeTIF;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbNumOfSeatsTIF;
-        private System.Windows.Forms.TextBox tbTableNumTIF;
-        private System.Windows.Forms.ComboBox cbProductsTIF;
-        private System.Windows.Forms.TextBox tbAvalaibleTIF;
         private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox tbEmployeeTIF;
+        public System.Windows.Forms.TextBox tbNumOfSeatsTIF;
+        public System.Windows.Forms.TextBox tbTableNumTIF;
+        public System.Windows.Forms.ComboBox cbProductsTIF;
+        public System.Windows.Forms.TextBox tbAvalaibleTIF;
     }
 }

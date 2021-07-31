@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CaffeBar.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,7 @@ namespace CaffeBar
         {
             InitializeComponent();
         }
+
+        
     }
 }

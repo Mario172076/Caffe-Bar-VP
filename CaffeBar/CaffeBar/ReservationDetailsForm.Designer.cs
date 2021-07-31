@@ -48,6 +48,7 @@ namespace CaffeBar
             // 
             this.tbNameRDF.Location = new System.Drawing.Point(88, 95);
             this.tbNameRDF.Name = "tbNameRDF";
+            this.tbNameRDF.ReadOnly = true;
             this.tbNameRDF.Size = new System.Drawing.Size(100, 20);
             this.tbNameRDF.TabIndex = 0;
             // 
@@ -55,6 +56,7 @@ namespace CaffeBar
             // 
             this.tbNumPeopleRDF.Location = new System.Drawing.Point(88, 134);
             this.tbNumPeopleRDF.Name = "tbNumPeopleRDF";
+            this.tbNumPeopleRDF.ReadOnly = true;
             this.tbNumPeopleRDF.Size = new System.Drawing.Size(100, 20);
             this.tbNumPeopleRDF.TabIndex = 1;
             // 
@@ -62,6 +64,7 @@ namespace CaffeBar
             // 
             this.tbResPriceRDF.Location = new System.Drawing.Point(88, 173);
             this.tbResPriceRDF.Name = "tbResPriceRDF";
+            this.tbResPriceRDF.ReadOnly = true;
             this.tbResPriceRDF.Size = new System.Drawing.Size(100, 20);
             this.tbResPriceRDF.TabIndex = 2;
             // 
@@ -69,6 +72,7 @@ namespace CaffeBar
             // 
             this.tbDateTimeRDF.Location = new System.Drawing.Point(88, 252);
             this.tbDateTimeRDF.Name = "tbDateTimeRDF";
+            this.tbDateTimeRDF.ReadOnly = true;
             this.tbDateTimeRDF.Size = new System.Drawing.Size(100, 20);
             this.tbDateTimeRDF.TabIndex = 4;
             // 
@@ -76,6 +80,7 @@ namespace CaffeBar
             // 
             this.tbTableRDF.Location = new System.Drawing.Point(88, 291);
             this.tbTableRDF.Name = "tbTableRDF";
+            this.tbTableRDF.ReadOnly = true;
             this.tbTableRDF.Size = new System.Drawing.Size(100, 20);
             this.tbTableRDF.TabIndex = 5;
             // 
@@ -177,13 +182,6 @@ namespace CaffeBar
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbNameRDF;
-        private System.Windows.Forms.TextBox tbNumPeopleRDF;
-        private System.Windows.Forms.TextBox tbResPriceRDF;
-        private System.Windows.Forms.TextBox tbDateTimeRDF;
-        private System.Windows.Forms.TextBox tbTableRDF;
-        private System.Windows.Forms.ComboBox cbProductsRDF;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -191,5 +189,11 @@ namespace CaffeBar
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.TextBox tbNameRDF;
+        public System.Windows.Forms.TextBox tbNumPeopleRDF;
+        public System.Windows.Forms.TextBox tbResPriceRDF;
+        public System.Windows.Forms.TextBox tbDateTimeRDF;
+        public System.Windows.Forms.TextBox tbTableRDF;
+        public System.Windows.Forms.ComboBox cbProductsRDF;
     }
 }

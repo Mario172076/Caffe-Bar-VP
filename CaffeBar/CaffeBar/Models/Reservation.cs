@@ -54,5 +54,21 @@ namespace CaffeBar.Models
             this.PriceRes = PriceRes;
             
         }
+
+        private string findCust(int Id)
+        {
+            using (var context = new ModelContext())
+            {
+
+                Customer customer = context.Customer.Where(c => c.CustId == Id).FirstOrDefault();
+                return customer.CustName;
+
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}ден", findCust(CustId), PriceRes);
+        }
     }
 }

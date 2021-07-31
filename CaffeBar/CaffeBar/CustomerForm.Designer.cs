@@ -217,7 +217,7 @@ namespace CaffeBar
             this.cbTableResCF.FormattingEnabled = true;
             this.cbTableResCF.Location = new System.Drawing.Point(31, 155);
             this.cbTableResCF.Name = "cbTableResCF";
-            this.cbTableResCF.Size = new System.Drawing.Size(99, 21);
+            this.cbTableResCF.Size = new System.Drawing.Size(122, 21);
             this.cbTableResCF.TabIndex = 6;
             // 
             // tbMinPriceResCF
@@ -347,7 +347,7 @@ namespace CaffeBar
             this.cbTableOrderCF.FormattingEnabled = true;
             this.cbTableOrderCF.Location = new System.Drawing.Point(34, 118);
             this.cbTableOrderCF.Name = "cbTableOrderCF";
-            this.cbTableOrderCF.Size = new System.Drawing.Size(100, 21);
+            this.cbTableOrderCF.Size = new System.Drawing.Size(118, 21);
             this.cbTableOrderCF.TabIndex = 10;
             // 
             // cbProductsOrderCF

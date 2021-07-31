@@ -29,6 +29,7 @@ namespace CaffeBar
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbTablesAF = new System.Windows.Forms.ListBox();
             this.lbOrdersAF = new System.Windows.Forms.ListBox();
             this.lbReservationsAF = new System.Windows.Forms.ListBox();
@@ -57,18 +58,20 @@ namespace CaffeBar
             this.cbAgeResAF = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnReceiptOrderAF = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnLogoutAF = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbLoggedAdminAF = new System.Windows.Forms.TextBox();
-            this.btnReceiptOrderAF = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lbTablesAF
@@ -103,6 +106,7 @@ namespace CaffeBar
             this.btnAddTableAF.TabIndex = 3;
             this.btnAddTableAF.Text = "Add Table";
             this.btnAddTableAF.UseVisualStyleBackColor = true;
+            this.btnAddTableAF.Click += new System.EventHandler(this.btnAddTableAF_Click);
             // 
             // btnViewTableAF
             // 
@@ -112,6 +116,7 @@ namespace CaffeBar
             this.btnViewTableAF.TabIndex = 4;
             this.btnViewTableAF.Text = "View Table";
             this.btnViewTableAF.UseVisualStyleBackColor = true;
+            this.btnViewTableAF.Click += new System.EventHandler(this.btnViewTableAF_Click);
             // 
             // btnViewOrderAF
             // 
@@ -121,6 +126,7 @@ namespace CaffeBar
             this.btnViewOrderAF.TabIndex = 5;
             this.btnViewOrderAF.Text = "View Order";
             this.btnViewOrderAF.UseVisualStyleBackColor = true;
+            this.btnViewOrderAF.Click += new System.EventHandler(this.btnViewOrderAF_Click);
             // 
             // btnDeliverOrderAF
             // 
@@ -139,6 +145,7 @@ namespace CaffeBar
             this.btnViewReservationAF.TabIndex = 7;
             this.btnViewReservationAF.Text = "View Reservation";
             this.btnViewReservationAF.UseVisualStyleBackColor = true;
+            this.btnViewReservationAF.Click += new System.EventHandler(this.btnViewReservationAF_Click);
             // 
             // btnAddProductAF
             // 
@@ -148,6 +155,7 @@ namespace CaffeBar
             this.btnAddProductAF.TabIndex = 8;
             this.btnAddProductAF.Text = "Add Product";
             this.btnAddProductAF.UseVisualStyleBackColor = true;
+            this.btnAddProductAF.Click += new System.EventHandler(this.btnAddProductAF_Click);
             // 
             // btnAddCatAF
             // 
@@ -157,6 +165,7 @@ namespace CaffeBar
             this.btnAddCatAF.TabIndex = 9;
             this.btnAddCatAF.Text = "Add Category";
             this.btnAddCatAF.UseVisualStyleBackColor = true;
+            this.btnAddCatAF.Click += new System.EventHandler(this.btnAddCatAF_Click);
             // 
             // tbProNameAF
             // 
@@ -164,6 +173,7 @@ namespace CaffeBar
             this.tbProNameAF.Name = "tbProNameAF";
             this.tbProNameAF.Size = new System.Drawing.Size(100, 20);
             this.tbProNameAF.TabIndex = 10;
+            this.tbProNameAF.Validating += new System.ComponentModel.CancelEventHandler(this.tbProNameAF_Validating);
             // 
             // tbProPriceAF
             // 
@@ -171,6 +181,7 @@ namespace CaffeBar
             this.tbProPriceAF.Name = "tbProPriceAF";
             this.tbProPriceAF.Size = new System.Drawing.Size(100, 20);
             this.tbProPriceAF.TabIndex = 11;
+            this.tbProPriceAF.Validating += new System.ComponentModel.CancelEventHandler(this.tbProPriceAF_Validating);
             // 
             // tbTimeServingAF
             // 
@@ -185,6 +196,7 @@ namespace CaffeBar
             this.tbProDescAF.Name = "tbProDescAF";
             this.tbProDescAF.Size = new System.Drawing.Size(100, 20);
             this.tbProDescAF.TabIndex = 14;
+            this.tbProDescAF.Validating += new System.ComponentModel.CancelEventHandler(this.tbProDescAF_Validating);
             // 
             // tbProQuantityAF
             // 
@@ -192,6 +204,7 @@ namespace CaffeBar
             this.tbProQuantityAF.Name = "tbProQuantityAF";
             this.tbProQuantityAF.Size = new System.Drawing.Size(100, 20);
             this.tbProQuantityAF.TabIndex = 15;
+            this.tbProQuantityAF.Validating += new System.ComponentModel.CancelEventHandler(this.tbProQuantityAF_Validating);
             // 
             // cbProCatAF
             // 
@@ -200,6 +213,7 @@ namespace CaffeBar
             this.cbProCatAF.Name = "cbProCatAF";
             this.cbProCatAF.Size = new System.Drawing.Size(100, 21);
             this.cbProCatAF.TabIndex = 16;
+            this.cbProCatAF.Validating += new System.ComponentModel.CancelEventHandler(this.cbProCatAF_Validating);
             // 
             // tbCatNameAF
             // 
@@ -207,6 +221,7 @@ namespace CaffeBar
             this.tbCatNameAF.Name = "tbCatNameAF";
             this.tbCatNameAF.Size = new System.Drawing.Size(100, 20);
             this.tbCatNameAF.TabIndex = 17;
+            this.tbCatNameAF.Validating += new System.ComponentModel.CancelEventHandler(this.tbCatNameAF_Validating);
             // 
             // label4
             // 
@@ -290,6 +305,7 @@ namespace CaffeBar
             this.cbAgeResAF.Name = "cbAgeResAF";
             this.cbAgeResAF.Size = new System.Drawing.Size(100, 21);
             this.cbAgeResAF.TabIndex = 31;
+            this.cbAgeResAF.Validating += new System.ComponentModel.CancelEventHandler(this.cbAgeResAF_Validating);
             // 
             // groupBox1
             // 
@@ -316,6 +332,15 @@ namespace CaffeBar
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ORDERS";
+            // 
+            // btnReceiptOrderAF
+            // 
+            this.btnReceiptOrderAF.Location = new System.Drawing.Point(34, 205);
+            this.btnReceiptOrderAF.Name = "btnReceiptOrderAF";
+            this.btnReceiptOrderAF.Size = new System.Drawing.Size(120, 23);
+            this.btnReceiptOrderAF.TabIndex = 7;
+            this.btnReceiptOrderAF.Text = "Give receipt";
+            this.btnReceiptOrderAF.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -391,14 +416,9 @@ namespace CaffeBar
             this.tbLoggedAdminAF.Size = new System.Drawing.Size(100, 20);
             this.tbLoggedAdminAF.TabIndex = 39;
             // 
-            // btnReceiptOrderAF
+            // errorProvider1
             // 
-            this.btnReceiptOrderAF.Location = new System.Drawing.Point(34, 205);
-            this.btnReceiptOrderAF.Name = "btnReceiptOrderAF";
-            this.btnReceiptOrderAF.Size = new System.Drawing.Size(120, 23);
-            this.btnReceiptOrderAF.TabIndex = 7;
-            this.btnReceiptOrderAF.Text = "Give receipt";
-            this.btnReceiptOrderAF.UseVisualStyleBackColor = true;
+            this.errorProvider1.ContainerControl = this;
             // 
             // AdminForm
             // 
@@ -423,6 +443,7 @@ namespace CaffeBar
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -465,5 +486,6 @@ namespace CaffeBar
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox tbLoggedAdminAF;
         private System.Windows.Forms.Button btnReceiptOrderAF;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

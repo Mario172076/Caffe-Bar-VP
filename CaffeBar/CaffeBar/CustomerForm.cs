@@ -144,7 +144,7 @@ namespace CaffeBar
                 }
 
                 List<Employee> employees = context.Employee.Where(em => em.EmpName != null).ToList();
-                List<Order> orders = context.Orders.Where(o => o.EmpId != null && (o.Status == 1 || o.Status == 2)).ToList();
+                List<Order> orders = context.Orders.Where((o => o.Status == 1 || o.Status == 2)).ToList();
                 //Choosing employee for the order if has less than 5 orders assigned;
                 foreach (Employee emp in employees)
                 {
@@ -269,8 +269,7 @@ namespace CaffeBar
                 reservation.MinPriceRes = int.Parse(tbMinPriceResCF.Text);
                 reservation.PriceRes = int.Parse(tbTotalPriceResCF.Text);
                 context.Reservations.Add(reservation);
-                context.SaveChanges();
-                     if (context.SaveChanges() > 0)
+                if (context.SaveChanges() > 0)
                 {
                     MessageBox.Show("Your have oredered successfully");
                 }

@@ -55,8 +55,38 @@ namespace CaffeBar
             }
         }
 
+        private void btnRegisterF1_Click(object sender, EventArgs e)
+        {
+            using (var context = new ModelContext())
+            {
+                if (flag == true)
+                {
+                    Customer customer = new Customer();
+                    customer.CustName = tbNameReg.Text;
+                    customer.CustSurname = tbSurnameReg.Text;
+                    customer.Email = tbEmailReg.Text;
+                    customer.CustTelephone = tbTelephoneReg.Text;
+                    customer.CustUsername = tbUsernameReg.Text;
+                    customer.CustPassword = tbPasswordReg.Text;
+                    customer.Age = tbAddressReg.Text;
+                    customer.Address = tbAddressReg.Text;
+                    context.Customer.Add(customer);
+                    if (context.SaveChanges() > 0)
+                    {
+                        MessageBox.Show("Succesfull registration");
+                    }
 
-      
+                }
+                else
+                {
+                    errorProvider1.SetError(btnRegisterF1, "Please enter informations first");
+
+                }
+            }
+        }
+
+
+
 
         //VALIDATION FOR REGISTRATION
 
@@ -266,34 +296,6 @@ namespace CaffeBar
             }
         }
 
-        private void btnRegisterF1_Click(object sender, EventArgs e)
-        {
-            using (var context = new ModelContext())
-            {
-                if (flag == true)
-                {
-                    Customer customer = new Customer();
-                    customer.CustName = tbNameReg.Text;
-                    customer.CustSurname = tbSurnameReg.Text;
-                    customer.Email = tbEmailReg.Text;
-                    customer.CustTelephone = tbTelephoneReg.Text;
-                    customer.CustUsername = tbUsernameReg.Text;
-                    customer.CustPassword = tbPasswordReg.Text;
-                    customer.Age = tbAddressReg.Text;
-                    customer.Address = tbAddressReg.Text;
-                    context.Customer.Add(customer);
-                    if (context.SaveChanges() > 0)
-                    {
-                        MessageBox.Show("Succesfull registration");
-                    }
-
-                }
-                else
-                {
-                    errorProvider1.SetError(btnRegisterF1, "Please enter informations first");
-
-                }
-            }
-        }
+       
     }
 }

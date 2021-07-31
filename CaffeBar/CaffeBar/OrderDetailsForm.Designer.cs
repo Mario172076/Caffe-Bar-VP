@@ -44,6 +44,8 @@ namespace CaffeBar
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.tbOrderPriceODF = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbNameODF
@@ -175,11 +177,30 @@ namespace CaffeBar
             this.label8.TabIndex = 14;
             this.label8.Text = "Employee";
             // 
+            // tbOrderPriceODF
+            // 
+            this.tbOrderPriceODF.Location = new System.Drawing.Point(218, 206);
+            this.tbOrderPriceODF.Name = "tbOrderPriceODF";
+            this.tbOrderPriceODF.ReadOnly = true;
+            this.tbOrderPriceODF.Size = new System.Drawing.Size(100, 20);
+            this.tbOrderPriceODF.TabIndex = 15;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(218, 191);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(31, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Price";
+            // 
             // OrderDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(407, 326);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.tbOrderPriceODF);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -203,14 +224,6 @@ namespace CaffeBar
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbNameODF;
-        private System.Windows.Forms.TextBox tbTableODF;
-        private System.Windows.Forms.TextBox tbAddressODF;
-        private System.Windows.Forms.TextBox tbStatusODF;
-        private System.Windows.Forms.TextBox tbTimeToDeliverODF;
-        private System.Windows.Forms.TextBox tbEmployeeODF;
-        private System.Windows.Forms.ComboBox cbProductsODF;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -219,5 +232,14 @@ namespace CaffeBar
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox tbNameODF;
+        public System.Windows.Forms.TextBox tbTableODF;
+        public System.Windows.Forms.TextBox tbAddressODF;
+        public System.Windows.Forms.TextBox tbStatusODF;
+        public System.Windows.Forms.TextBox tbTimeToDeliverODF;
+        public System.Windows.Forms.TextBox tbEmployeeODF;
+        public System.Windows.Forms.ComboBox cbProductsODF;
+        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.TextBox tbOrderPriceODF;
     }
 }

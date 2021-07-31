@@ -61,6 +61,10 @@ namespace CaffeBar.Models
             this.EmpPassword = EmpPassword;
             this.LoggedIn = LoggedIn;
         }
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", EmpName, EmpSurname);
+        }
     }
 }
 
