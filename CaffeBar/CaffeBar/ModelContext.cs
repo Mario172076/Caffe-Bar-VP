@@ -10,7 +10,7 @@ namespace CaffeBar
 {
     public class ModelContext: DbContext
     {
-        public ModelContext(): base("name=CaffeBar") { }
+        public ModelContext(): base("Data Source=DESKTOP-EITPB7M;Initial Catalog=CaffeBar;Integrated Security=True") { }
 
         public DbSet<Category> Category { get; set; }
         public DbSet<Customer> Customer { get; set; }

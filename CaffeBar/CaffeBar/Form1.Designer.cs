@@ -57,9 +57,13 @@ namespace CaffeBar
             this.tbSurnameReg = new System.Windows.Forms.TextBox();
             this.tbNameReg = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.gbPromotionImage = new System.Windows.Forms.GroupBox();
+            this.pbPromotion = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.gbPromotionImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPromotion)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -140,7 +144,7 @@ namespace CaffeBar
             this.groupBox2.Controls.Add(this.tbEmailReg);
             this.groupBox2.Controls.Add(this.tbSurnameReg);
             this.groupBox2.Controls.Add(this.tbNameReg);
-            this.groupBox2.Location = new System.Drawing.Point(288, 65);
+            this.groupBox2.Location = new System.Drawing.Point(736, 65);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(461, 292);
             this.groupBox2.TabIndex = 1;
@@ -316,11 +320,30 @@ namespace CaffeBar
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // gbPromotionImage
+            // 
+            this.gbPromotionImage.Controls.Add(this.pbPromotion);
+            this.gbPromotionImage.Location = new System.Drawing.Point(302, 65);
+            this.gbPromotionImage.Name = "gbPromotionImage";
+            this.gbPromotionImage.Size = new System.Drawing.Size(373, 292);
+            this.gbPromotionImage.TabIndex = 2;
+            this.gbPromotionImage.TabStop = false;
+            this.gbPromotionImage.Text = "NEW PRODUCT";
+            // 
+            // pbPromotion
+            // 
+            this.pbPromotion.Location = new System.Drawing.Point(6, 19);
+            this.pbPromotion.Name = "pbPromotion";
+            this.pbPromotion.Size = new System.Drawing.Size(361, 267);
+            this.pbPromotion.TabIndex = 0;
+            this.pbPromotion.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 408);
+            this.ClientSize = new System.Drawing.Size(1247, 408);
+            this.Controls.Add(this.gbPromotionImage);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -330,6 +353,8 @@ namespace CaffeBar
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.gbPromotionImage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbPromotion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -363,6 +388,8 @@ namespace CaffeBar
         private System.Windows.Forms.ErrorProvider errorProvider1;
         public System.Windows.Forms.TextBox tbLoginPassword;
         public System.Windows.Forms.TextBox tbUsernameLogin;
+        private System.Windows.Forms.GroupBox gbPromotionImage;
+        private System.Windows.Forms.PictureBox pbPromotion;
     }
 }
 

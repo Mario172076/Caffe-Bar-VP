@@ -61,11 +61,23 @@ namespace CaffeBar
         {
             using (var context = new ModelContext())
             {
-                table = new Table();
-                employee = (Employee)cbEmployeeATF.SelectedItem;
-                table.EmpId = employee.EmpId;
-                table.NumberOfSeats = int.Parse(tbNumSeatsATF.Text);
-                table.TableAvalaible = bool.Parse(cbAvalaibleATF.Text);
+                try
+                {
+                    table = new Table();
+                    employee = (Employee)cbEmployeeATF.SelectedItem;
+                    if (employee == null)
+                    {
+                        throw new Exception();
+                    }
+                    table.EmpId = employee.EmpId;
+                    table.NumberOfSeats = int.Parse(tbNumSeatsATF.Text);
+                    table.TableAvalaible = bool.Parse(cbAvalaibleATF.Text);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Please set all values for the table");
+                    return;
+                }
                 context.Tables.Add(table);
                 if(context.SaveChanges() > 0)
                 {

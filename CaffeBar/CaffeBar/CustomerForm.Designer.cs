@@ -82,10 +82,28 @@ namespace CaffeBar
             this.tbLoggedUserCF = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.gbOrdersStatus = new System.Windows.Forms.GroupBox();
+            this.lblStatus4 = new System.Windows.Forms.Label();
+            this.lblStatus3 = new System.Windows.Forms.Label();
+            this.lblStatus2 = new System.Windows.Forms.Label();
+            this.lblStatus1 = new System.Windows.Forms.Label();
+            this.pb4 = new System.Windows.Forms.ProgressBar();
+            this.pb3 = new System.Windows.Forms.ProgressBar();
+            this.pb2 = new System.Windows.Forms.ProgressBar();
+            this.pb1 = new System.Windows.Forms.ProgressBar();
+            this.lblId4 = new System.Windows.Forms.Label();
+            this.lblId3 = new System.Windows.Forms.Label();
+            this.lblId2 = new System.Windows.Forms.Label();
+            this.lblId1 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnReceipts = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.gbOrdersStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -390,9 +408,9 @@ namespace CaffeBar
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.lbCoffesCF);
             this.groupBox3.Controls.Add(this.btnAddProToOrderCF);
-            this.groupBox3.Location = new System.Drawing.Point(23, 396);
+            this.groupBox3.Location = new System.Drawing.Point(488, 30);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(641, 315);
+            this.groupBox3.Size = new System.Drawing.Size(641, 347);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "MENU";
@@ -515,9 +533,9 @@ namespace CaffeBar
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(20, 20);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.Size = new System.Drawing.Size(43, 13);
             this.label14.TabIndex = 15;
-            this.label14.Text = "Coffes";
+            this.label14.Text = "Coffees";
             // 
             // lbCoffesCF
             // 
@@ -539,7 +557,7 @@ namespace CaffeBar
             // 
             // btnLogoutCF
             // 
-            this.btnLogoutCF.Location = new System.Drawing.Point(485, 76);
+            this.btnLogoutCF.Location = new System.Drawing.Point(1135, 71);
             this.btnLogoutCF.Name = "btnLogoutCF";
             this.btnLogoutCF.Size = new System.Drawing.Size(100, 54);
             this.btnLogoutCF.TabIndex = 4;
@@ -550,7 +568,7 @@ namespace CaffeBar
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(482, 40);
+            this.label13.Location = new System.Drawing.Point(1132, 35);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(71, 13);
             this.label13.TabIndex = 5;
@@ -558,7 +576,7 @@ namespace CaffeBar
             // 
             // tbLoggedUserCF
             // 
-            this.tbLoggedUserCF.Location = new System.Drawing.Point(485, 56);
+            this.tbLoggedUserCF.Location = new System.Drawing.Point(1135, 51);
             this.tbLoggedUserCF.Name = "tbLoggedUserCF";
             this.tbLoggedUserCF.Size = new System.Drawing.Size(100, 20);
             this.tbLoggedUserCF.TabIndex = 6;
@@ -569,13 +587,178 @@ namespace CaffeBar
             // 
             // timer1
             // 
-            this.timer1.Interval = 1500000;
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // gbOrdersStatus
+            // 
+            this.gbOrdersStatus.Controls.Add(this.lblStatus4);
+            this.gbOrdersStatus.Controls.Add(this.lblStatus3);
+            this.gbOrdersStatus.Controls.Add(this.lblStatus2);
+            this.gbOrdersStatus.Controls.Add(this.lblStatus1);
+            this.gbOrdersStatus.Controls.Add(this.pb4);
+            this.gbOrdersStatus.Controls.Add(this.pb3);
+            this.gbOrdersStatus.Controls.Add(this.pb2);
+            this.gbOrdersStatus.Controls.Add(this.pb1);
+            this.gbOrdersStatus.Controls.Add(this.lblId4);
+            this.gbOrdersStatus.Controls.Add(this.lblId3);
+            this.gbOrdersStatus.Controls.Add(this.lblId2);
+            this.gbOrdersStatus.Controls.Add(this.lblId1);
+            this.gbOrdersStatus.Controls.Add(this.label23);
+            this.gbOrdersStatus.Controls.Add(this.label22);
+            this.gbOrdersStatus.Controls.Add(this.label21);
+            this.gbOrdersStatus.Location = new System.Drawing.Point(34, 383);
+            this.gbOrdersStatus.Name = "gbOrdersStatus";
+            this.gbOrdersStatus.Size = new System.Drawing.Size(1095, 205);
+            this.gbOrdersStatus.TabIndex = 7;
+            this.gbOrdersStatus.TabStop = false;
+            this.gbOrdersStatus.Text = "ORDERS STATUS";
+            // 
+            // lblStatus4
+            // 
+            this.lblStatus4.AutoSize = true;
+            this.lblStatus4.Location = new System.Drawing.Point(1017, 162);
+            this.lblStatus4.Name = "lblStatus4";
+            this.lblStatus4.Size = new System.Drawing.Size(41, 13);
+            this.lblStatus4.TabIndex = 14;
+            this.lblStatus4.Text = "label27";
+            // 
+            // lblStatus3
+            // 
+            this.lblStatus3.AutoSize = true;
+            this.lblStatus3.Location = new System.Drawing.Point(1017, 126);
+            this.lblStatus3.Name = "lblStatus3";
+            this.lblStatus3.Size = new System.Drawing.Size(41, 13);
+            this.lblStatus3.TabIndex = 13;
+            this.lblStatus3.Text = "label26";
+            // 
+            // lblStatus2
+            // 
+            this.lblStatus2.AutoSize = true;
+            this.lblStatus2.Location = new System.Drawing.Point(1017, 88);
+            this.lblStatus2.Name = "lblStatus2";
+            this.lblStatus2.Size = new System.Drawing.Size(41, 13);
+            this.lblStatus2.TabIndex = 12;
+            this.lblStatus2.Text = "label25";
+            // 
+            // lblStatus1
+            // 
+            this.lblStatus1.AutoSize = true;
+            this.lblStatus1.Location = new System.Drawing.Point(1017, 55);
+            this.lblStatus1.Name = "lblStatus1";
+            this.lblStatus1.Size = new System.Drawing.Size(41, 13);
+            this.lblStatus1.TabIndex = 11;
+            this.lblStatus1.Text = "label24";
+            // 
+            // pb4
+            // 
+            this.pb4.Location = new System.Drawing.Point(63, 162);
+            this.pb4.Name = "pb4";
+            this.pb4.Size = new System.Drawing.Size(944, 17);
+            this.pb4.TabIndex = 10;
+            // 
+            // pb3
+            // 
+            this.pb3.Location = new System.Drawing.Point(63, 126);
+            this.pb3.Name = "pb3";
+            this.pb3.Size = new System.Drawing.Size(944, 17);
+            this.pb3.TabIndex = 9;
+            // 
+            // pb2
+            // 
+            this.pb2.Location = new System.Drawing.Point(63, 88);
+            this.pb2.Name = "pb2";
+            this.pb2.Size = new System.Drawing.Size(944, 17);
+            this.pb2.TabIndex = 8;
+            // 
+            // pb1
+            // 
+            this.pb1.Location = new System.Drawing.Point(63, 55);
+            this.pb1.Name = "pb1";
+            this.pb1.Size = new System.Drawing.Size(944, 17);
+            this.pb1.TabIndex = 7;
+            // 
+            // lblId4
+            // 
+            this.lblId4.AutoSize = true;
+            this.lblId4.Location = new System.Drawing.Point(7, 166);
+            this.lblId4.Name = "lblId4";
+            this.lblId4.Size = new System.Drawing.Size(41, 13);
+            this.lblId4.TabIndex = 6;
+            this.lblId4.Text = "label27";
+            // 
+            // lblId3
+            // 
+            this.lblId3.AutoSize = true;
+            this.lblId3.Location = new System.Drawing.Point(7, 130);
+            this.lblId3.Name = "lblId3";
+            this.lblId3.Size = new System.Drawing.Size(41, 13);
+            this.lblId3.TabIndex = 5;
+            this.lblId3.Text = "label26";
+            // 
+            // lblId2
+            // 
+            this.lblId2.AutoSize = true;
+            this.lblId2.Location = new System.Drawing.Point(7, 92);
+            this.lblId2.Name = "lblId2";
+            this.lblId2.Size = new System.Drawing.Size(41, 13);
+            this.lblId2.TabIndex = 4;
+            this.lblId2.Text = "label25";
+            // 
+            // lblId1
+            // 
+            this.lblId1.AutoSize = true;
+            this.lblId1.Location = new System.Drawing.Point(7, 58);
+            this.lblId1.Name = "lblId1";
+            this.lblId1.Size = new System.Drawing.Size(41, 13);
+            this.lblId1.TabIndex = 3;
+            this.lblId1.Text = "label24";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(1014, 20);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(37, 13);
+            this.label23.TabIndex = 2;
+            this.label23.Text = "Status";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(518, 20);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(48, 13);
+            this.label22.TabIndex = 1;
+            this.label22.Text = "Progress";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(7, 20);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(38, 13);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Orders";
+            // 
+            // btnReceipts
+            // 
+            this.btnReceipts.Location = new System.Drawing.Point(1146, 148);
+            this.btnReceipts.Name = "btnReceipts";
+            this.btnReceipts.Size = new System.Drawing.Size(100, 23);
+            this.btnReceipts.TabIndex = 8;
+            this.btnReceipts.Text = "View Receipt(s)";
+            this.btnReceipts.UseVisualStyleBackColor = true;
+            this.btnReceipts.Click += new System.EventHandler(this.btnReceipts_Click);
             // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 735);
+            this.ClientSize = new System.Drawing.Size(1296, 735);
+            this.Controls.Add(this.btnReceipts);
+            this.Controls.Add(this.gbOrdersStatus);
             this.Controls.Add(this.tbLoggedUserCF);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.btnLogoutCF);
@@ -592,6 +775,8 @@ namespace CaffeBar
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.gbOrdersStatus.ResumeLayout(false);
+            this.gbOrdersStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -651,5 +836,22 @@ namespace CaffeBar
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnRemoveProResCF;
         private System.Windows.Forms.Button btnRemoveProOrderCF;
+        private System.Windows.Forms.GroupBox gbOrdersStatus;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label lblId4;
+        private System.Windows.Forms.Label lblId3;
+        private System.Windows.Forms.Label lblId2;
+        private System.Windows.Forms.Label lblId1;
+        private System.Windows.Forms.Button btnReceipts;
+        private System.Windows.Forms.Label lblStatus4;
+        private System.Windows.Forms.Label lblStatus3;
+        private System.Windows.Forms.Label lblStatus2;
+        private System.Windows.Forms.Label lblStatus1;
+        public System.Windows.Forms.ProgressBar pb4;
+        public System.Windows.Forms.ProgressBar pb3;
+        public System.Windows.Forms.ProgressBar pb2;
+        public System.Windows.Forms.ProgressBar pb1;
     }
 }

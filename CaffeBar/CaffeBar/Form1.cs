@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -18,6 +21,51 @@ namespace CaffeBar
         public Form1()
         {
             InitializeComponent();
+
+            int productID = -1;
+            int productPrice = -1;
+            String productName = "";
+            int ageRestriction = -1;
+            using (SqlConnection DBConnect = new SqlConnection(connectionString: "Data Source=DESKTOP-EITPB7M;Initial Catalog=CaffeBar;Integrated Security=True"))
+            {
+
+                String query = "SELECT TOP(1) * FROM Products ORDER BY proId DESC";
+                SqlCommand sqlCommand = new SqlCommand(query, DBConnect);
+
+                DBConnect.Open();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    productID = (int)reader.GetValue(0);
+                    productPrice = (int)reader.GetValue(2);
+                    productName = (string)reader.GetValue(3);
+                    ageRestriction = (int)reader.GetValue(5);
+                }
+                reader.Close();
+                DBConnect.Close();
+            }
+
+            // slikite mora da se vo jpg format
+            String imageURL = "..\\img\\" + productID + ".jpg";
+            if (File.Exists(imageURL))
+            {
+                pbPromotion.Load(imageURL);
+            }
+            else
+            {
+                pbPromotion.Load("..\\img\\error.png");
+            }
+            pbPromotion.SizeMode = PictureBoxSizeMode.Zoom;
+            String restriction = null;
+            if (ageRestriction == 0)
+            {
+                restriction = "";
+            }
+            else
+            {
+                restriction = "(18+)";
+            }
+            gbPromotionImage.Text = "NEW PRODUCT: " + productName + ", " + productPrice + " ден. " + restriction;
         }
 
         private void btnLoginF1_Click(object sender, EventArgs e)

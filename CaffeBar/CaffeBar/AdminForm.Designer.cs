@@ -66,12 +66,18 @@ namespace CaffeBar
             this.label1 = new System.Windows.Forms.Label();
             this.tbLoggedAdminAF = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnOrdersHistory = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblLateOrders = new System.Windows.Forms.Label();
+            this.lblCompletedOrdersOnTime = new System.Windows.Forms.Label();
+            this.lblOrderHistory = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbTablesAF
@@ -136,6 +142,7 @@ namespace CaffeBar
             this.btnDeliverOrderAF.TabIndex = 6;
             this.btnDeliverOrderAF.Text = "Deliver Order";
             this.btnDeliverOrderAF.UseVisualStyleBackColor = true;
+            this.btnDeliverOrderAF.Click += new System.EventHandler(this.btnDeliverOrderAF_Click);
             // 
             // btnViewReservationAF
             // 
@@ -341,6 +348,7 @@ namespace CaffeBar
             this.btnReceiptOrderAF.TabIndex = 7;
             this.btnReceiptOrderAF.Text = "Give receipt";
             this.btnReceiptOrderAF.UseVisualStyleBackColor = true;
+            this.btnReceiptOrderAF.Click += new System.EventHandler(this.btnReceiptOrderAF_Click);
             // 
             // groupBox3
             // 
@@ -420,11 +428,62 @@ namespace CaffeBar
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnOrdersHistory
+            // 
+            this.btnOrdersHistory.Location = new System.Drawing.Point(19, 189);
+            this.btnOrdersHistory.Name = "btnOrdersHistory";
+            this.btnOrdersHistory.Size = new System.Drawing.Size(131, 23);
+            this.btnOrdersHistory.TabIndex = 40;
+            this.btnOrdersHistory.Text = "View order history";
+            this.btnOrdersHistory.UseVisualStyleBackColor = true;
+            this.btnOrdersHistory.Click += new System.EventHandler(this.btnOrdersHistory_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.lblLateOrders);
+            this.groupBox6.Controls.Add(this.lblCompletedOrdersOnTime);
+            this.groupBox6.Controls.Add(this.lblOrderHistory);
+            this.groupBox6.Controls.Add(this.btnOrdersHistory);
+            this.groupBox6.Location = new System.Drawing.Point(224, 443);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(179, 236);
+            this.groupBox6.TabIndex = 41;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "ORDER HISTORY";
+            // 
+            // lblLateOrders
+            // 
+            this.lblLateOrders.AutoSize = true;
+            this.lblLateOrders.Location = new System.Drawing.Point(10, 125);
+            this.lblLateOrders.Name = "lblLateOrders";
+            this.lblLateOrders.Size = new System.Drawing.Size(121, 13);
+            this.lblLateOrders.TabIndex = 42;
+            this.lblLateOrders.Text = "Completed orders late: 0";
+            // 
+            // lblCompletedOrdersOnTime
+            // 
+            this.lblCompletedOrdersOnTime.AutoSize = true;
+            this.lblCompletedOrdersOnTime.Location = new System.Drawing.Point(10, 83);
+            this.lblCompletedOrdersOnTime.Name = "lblCompletedOrdersOnTime";
+            this.lblCompletedOrdersOnTime.Size = new System.Drawing.Size(138, 13);
+            this.lblCompletedOrdersOnTime.TabIndex = 41;
+            this.lblCompletedOrdersOnTime.Text = "Completed orders on time: 0";
+            // 
+            // lblOrderHistory
+            // 
+            this.lblOrderHistory.AutoSize = true;
+            this.lblOrderHistory.Location = new System.Drawing.Point(7, 47);
+            this.lblOrderHistory.Name = "lblOrderHistory";
+            this.lblOrderHistory.Size = new System.Drawing.Size(154, 13);
+            this.lblOrderHistory.TabIndex = 0;
+            this.lblOrderHistory.Text = "Total number of orders made: 0";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 691);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.tbLoggedAdminAF);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLogoutAF);
@@ -444,6 +503,8 @@ namespace CaffeBar
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -487,5 +548,10 @@ namespace CaffeBar
         public System.Windows.Forms.TextBox tbLoggedAdminAF;
         private System.Windows.Forms.Button btnReceiptOrderAF;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label lblCompletedOrdersOnTime;
+        private System.Windows.Forms.Label lblOrderHistory;
+        private System.Windows.Forms.Button btnOrdersHistory;
+        private System.Windows.Forms.Label lblLateOrders;
     }
 }
