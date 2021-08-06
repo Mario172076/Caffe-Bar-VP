@@ -14,16 +14,13 @@ namespace CaffeBar
     {
         public static bool isOrderLate;
         public static int loggedInCustomerId;
+      
         int timeElapsed1;
         int timeElapsed2;
         int timeElapsed3;
         int timeElapsed4;
         public static int loggedIn;
-        List<Order> delivered = new List<Order>();
-        List<Order> madeOrders = new List<Order>();
-        List<bool> areOrdersLate = new List<bool>();
         List<Order> ordersPb = new List<Order>();
-        Dictionary<ProgressBar, int> dict = new Dictionary<ProgressBar, int>();
         public CustomerForm()
         {
             InitializeComponent();
@@ -32,20 +29,34 @@ namespace CaffeBar
             DoubleBuffered = true;
             timer1.Start();
         }
+        Customer customer = new ModelContext().Customer.Where(c => c.LoggedIn == 1).FirstOrDefault();
 
         private void loadInformations()
         {
+            timer1.Start();
+            tbMinPriceResCF.Text = "400";
+
+            lbBeersCF.Items.Clear();
+            lbBurgersCF.Items.Clear();
+            lbCoffesCF.Items.Clear();
+            lbJuicesCF.Items.Clear();
+            lbWhiskyCF.Items.Clear();
+            lbPizzasCF.Items.Clear();
+            lbSodaCF.Items.Clear();
+
+            pb1.Value = 0;
+            pb2.Value = 0;
+            pb3.Value = 0;
+            pb4.Value = 0;
+
+            timeElapsed1 = Properties.Settings.Default.timeElapsed1;
+            timeElapsed2 = Properties.Settings.Default.timeElapsed2;
+            timeElapsed3 = Properties.Settings.Default.timeElapsed3;
+            timeElapsed4 = Properties.Settings.Default.timeElapsed4;
 
             using (var context = new ModelContext())
             {
-                pb1.Value = 0;
-                pb2.Value = 0;
-                pb3.Value = 0;
-                pb4.Value = 0;
-                timeElapsed1 = Properties.Settings.Default.timeElapsed1;
-                timeElapsed2 = Properties.Settings.Default.timeElapsed2;
-                timeElapsed3 = Properties.Settings.Default.timeElapsed3;
-                timeElapsed4 = Properties.Settings.Default.timeElapsed4;
+
                 List<Product> products = context.Products.Where(p => p.ProName != null).ToList();
                 foreach (Product p in products)
                 {
@@ -88,7 +99,7 @@ namespace CaffeBar
                     }
                 
                 }
-                tbMinPriceResCF.Text = "400";
+                
             }
         }
 
@@ -101,6 +112,7 @@ namespace CaffeBar
             Properties.Settings.Default.timeElapsed2 = pb2.Value;
             Properties.Settings.Default.timeElapsed3 = pb3.Value;
             Properties.Settings.Default.timeElapsed4 = pb4.Value;
+            timer1.Stop();
 
             using (var context = new ModelContext())
             {
@@ -108,7 +120,6 @@ namespace CaffeBar
                 customer.LoggedIn = 0;
                 flag = true;
                 context.SaveChanges();
-                timer1.Stop();
                 Close();
             }
 
@@ -120,7 +131,7 @@ namespace CaffeBar
             Properties.Settings.Default.timeElapsed2 = pb2.Value;
             Properties.Settings.Default.timeElapsed3 = pb3.Value;
             Properties.Settings.Default.timeElapsed4 = pb4.Value;
-
+            timer1.Stop();
 
             if (flag == true)
             {
@@ -154,11 +165,16 @@ namespace CaffeBar
 
         private void btnAddOrderCF_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.timeElapsed1 = pb1.Value;
+            Properties.Settings.Default.timeElapsed2 = pb2.Value;
+            Properties.Settings.Default.timeElapsed3 = pb3.Value;
+            Properties.Settings.Default.timeElapsed4 = pb4.Value;
             Order order = new Order();
             using (var context = new ModelContext())
             {
                 //checking if product quantity is greater than 0, and if customer is ordering alcohol and is less than 18 years old
                 Customer cusOrder = context.Customer.Where(c => c.CustName == tbNameOrderCF.Text).FirstOrDefault();
+                
                 if (cbProductsOrderCF.Items.Count == 0)
                 {
                     MessageBox.Show("Please select a product before making an order");
@@ -181,11 +197,7 @@ namespace CaffeBar
                     p.ProQuantity -= 1;
 
                 }
-                foreach (Product p in cbProductsOrderCF.Items)
-                {
-                    context.Entry(p).State = EntityState.Modified;
-                    context.SaveChanges();
-                }
+               
 
                 List<Employee> employees = context.Employee.Where(em => em.EmpName != null).ToList();
                 List<Order> orders = context.Orders.Where((o => o.Status == 1 || o.Status == 2)).ToList();
@@ -216,37 +228,57 @@ namespace CaffeBar
                 //adding customer to the order
                 Customer customer = context.Customer.Where(c => c.LoggedIn == 1 && c.CustName == tbLoggedUserCF.Text.ToLower()).FirstOrDefault();
                 order.CustId = customer.CustId;
+                int counter = 0;
+                foreach(Order o in orders)
+                {
+                    if(o.CustId == customer.CustId)
+                    {
+                        counter++;
+                    }
+                    if (counter == 4)
+                    {
+                        MessageBox.Show("You cannot have more than 4 orders at a given time");
+                        foreach(Product p in cbProductsOrderCF.Items)
+                        {
+                            p.ProQuantity++;
+                        }
+                        return;
+                    }
+                }
                 //adding table to the order
                 Table t = (Table)cbTableOrderCF.SelectedItem;
                 if (t != null && tbAddressOrderCF.Text=="")
                 {
                     t.TableAvalaible = false;
                     context.Entry(t).State = EntityState.Modified;
-                    context.SaveChanges();
                     int tableId = t.TableId;
                     order.TableId = tableId;
                     order.Status = 1;//product is ordered with in the CaffeBar local
                 }
                 else if (tbAddressOrderCF.Text!="" && t==null)
                 {
-                    order.Status = 1;//if table is null the order is in status delivering
+                    order.Status = 1;//order is ordered but needs to be delivered
                     order.TimeToDeliver = 25;
                     order.OrderAddress = tbAddressOrderCF.Text;
                 }
                 else
                 {
                     MessageBox.Show("Please select a table or enter an address");
+                    foreach (Product p in cbProductsOrderCF.Items)
+                    {
+                        p.ProQuantity++;
+                    }
                     return;
                 }
                 //adding other values
                 
                 order.OrderPrice = int.Parse(tbTotalPriceOrderCF.Text);
-               
                 context.Orders.Add(order);
-                if (context.SaveChanges() > 0)
+                foreach (Product p in cbProductsOrderCF.Items)
                 {
-                    MessageBox.Show("Your have ordered successfully");
+                    context.Entry(p).State = EntityState.Modified;
                 }
+
 
                 //adding every product with the order in the Other table
                 foreach (Product p in cbProductsOrderCF.Items)
@@ -256,8 +288,12 @@ namespace CaffeBar
                     pio.ProductId = p.ProId;
                     pio.OrderId = order.OrderId;
                     context.ProductsInOrder.Add(pio);
-                    context.SaveChanges();
 
+
+                }
+                if (context.SaveChanges() > 0)
+                {
+                    MessageBox.Show("Your have ordered successfully");
                 }
                 cbProductsOrderCF.Items.Clear();
                 cbTableOrderCF.SelectedItem = null;
@@ -265,13 +301,8 @@ namespace CaffeBar
                 tbTotalPriceOrderCF.Clear();
               
             }
-            lbBeersCF.Items.Clear();
-            lbBurgersCF.Items.Clear();
-            lbCoffesCF.Items.Clear();
-            lbJuicesCF.Items.Clear();
-            lbWhiskyCF.Items.Clear();
-            lbPizzasCF.Items.Clear();
-            lbSodaCF.Items.Clear();
+
+            init();
             loadInformations();
         }
 
@@ -312,11 +343,19 @@ namespace CaffeBar
                 catch(Exception exception)
                 {
                     MessageBox.Show("Please pick a valid date");
+                    foreach (Product p in cbProductsOrderCF.Items)
+                    {
+                        p.ProQuantity++;
+                    }
                     return;
                 }
                 if (dt < DateTime.Now)
                 {
                     MessageBox.Show("Please pick a valid date");
+                    foreach (Product p in cbProductsOrderCF.Items)
+                    {
+                        p.ProQuantity++;
+                    }
                     return;
                 }
 
@@ -326,18 +365,25 @@ namespace CaffeBar
                 {
                     if (int.Parse(tbNumPeopleResCF.Text) > t.NumberOfSeats)
                     {
-                        MessageBox.Show("Please select a table with more seats if such table is avalaible");
+                        MessageBox.Show("Please select a table with more seats if such a table is avalaible");
+                        foreach (Product p in cbProductsOrderCF.Items)
+                        {
+                            p.ProQuantity++;
+                        }
                         return;
                     }
                     t.TableAvalaible = false;
                     context.Entry(t).State = EntityState.Modified;
-                    context.SaveChanges();
                     int tableId = t.TableId;
                     reservation.TableId = tableId;
                 }
                 else
                 {
                     MessageBox.Show("Please select table for the reservation");
+                    foreach (Product p in cbProductsOrderCF.Items)
+                    {
+                        p.ProQuantity++;
+                    }
                     return;
                 }
                 
@@ -352,6 +398,10 @@ namespace CaffeBar
                 catch(Exception ex)
                 {
                     MessageBox.Show("Enter number of people");
+                    foreach (Product p in cbProductsOrderCF.Items)
+                    {
+                        p.ProQuantity++;
+                    }
                     return;
                 }
                 reservation.MinPriceRes = int.Parse(tbMinPriceResCF.Text);
@@ -360,25 +410,29 @@ namespace CaffeBar
                 {
                     if (reservation.MinPriceRes > reservation.PriceRes)
                     {
+                        foreach (Product p in cbProductsOrderCF.Items)
+                        {
+                            p.ProQuantity++;
+                        }
                         throw new Exception();
                     }
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show("Price for reserving a table must be more than " + reservation.MinPriceRes);
+                    foreach (Product p in cbProductsOrderCF.Items)
+                    {
+                        p.ProQuantity++;
+                    }
                     return;
                 }
                 context.Reservations.Add(reservation);
-                if (context.SaveChanges() > 0)
-                {
-                    MessageBox.Show("Your have ordered successfully");
-                }
+              
 
                 //saving decreased quantity for products
                 foreach (Product p in cbProductsResCF.Items)
                 {
                     context.Entry(p).State = EntityState.Modified;
-                    context.SaveChanges();
                 }
 
                 //adding every product with the order in the Other table
@@ -389,9 +443,13 @@ namespace CaffeBar
                     pir.ProductId = p.ProId;
                     pir.ResId = reservation.ResId;
                     context.ProductsInReservation.Add(pir);
-                    context.SaveChanges();
 
                 }
+                if (context.SaveChanges() > 0)
+                {
+                    MessageBox.Show("Your have ordered successfully");
+                }
+
                 tbDateTimeResCF.Clear();
                 tbNumPeopleResCF.Clear();
                 cbTableResCF.SelectedItem = null;
@@ -399,13 +457,6 @@ namespace CaffeBar
                 tbTotalPriceResCF.Clear();
 
             }
-            lbBeersCF.Items.Clear();
-            lbBurgersCF.Items.Clear();
-            lbCoffesCF.Items.Clear();
-            lbJuicesCF.Items.Clear();
-            lbWhiskyCF.Items.Clear();
-            lbPizzasCF.Items.Clear();
-            lbSodaCF.Items.Clear();
             loadInformations();
         }
 
@@ -599,10 +650,17 @@ namespace CaffeBar
             lbSodaCF.SelectedItems.Clear();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            using(var context = new ModelContext())
+            private void timer1_Tick(object sender, EventArgs e)
             {
+
+            using (var context = new ModelContext())
+            {
+                timeElapsed1 = Properties.Settings.Default.timeElapsed1;
+                timeElapsed2 = Properties.Settings.Default.timeElapsed2;
+                timeElapsed3 = Properties.Settings.Default.timeElapsed3;
+                timeElapsed4 = Properties.Settings.Default.timeElapsed4;
+                ordersPb = context.Orders.Where(o => o.CustId == customer.CustId && o.TimeToDeliver != null).ToList();
+
                 switch (ordersPb.Count)
                 {
                     case 0:
@@ -610,10 +668,13 @@ namespace CaffeBar
                     case 1:
                         if (ordersPb[0].Status == 2)
                         {
-                            timeElapsed1++;
+
                             pb1.Value = timeElapsed1;
                             if (pb1.Value == pb1.Maximum)
                             {
+                                pb1.Visible = false;
+                                lblId1.Visible = false;
+                                lblStatus1.Visible = false;
                                 ordersPb[0].Status = 3;
                                 context.Entry(ordersPb[0]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -623,10 +684,13 @@ namespace CaffeBar
                     case 2:
                         if (ordersPb[0].Status == 2)
                         {
-                            timeElapsed1++;
+
                             pb1.Value = timeElapsed1;
                             if (pb1.Value == pb1.Maximum)
                             {
+                                pb1.Visible = false;
+                                lblId1.Visible = false;
+                                lblStatus1.Visible = false;
                                 ordersPb[0].Status = 3;
                                 context.Entry(ordersPb[0]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -634,10 +698,13 @@ namespace CaffeBar
                         }
                         if (ordersPb[1].Status == 2)
                         {
-                            timeElapsed2++;
+
                             pb2.Value = timeElapsed2;
                             if (pb2.Value == pb2.Maximum)
                             {
+                                pb2.Visible = false;
+                                lblId2.Visible = false;
+                                lblStatus2.Visible = false;
                                 ordersPb[1].Status = 3;
                                 context.Entry(ordersPb[1]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -647,10 +714,13 @@ namespace CaffeBar
                     case 3:
                         if (ordersPb[0].Status == 2)
                         {
-                            timeElapsed1++;
+
                             pb1.Value = timeElapsed1;
                             if (pb1.Value == pb1.Maximum)
                             {
+                                pb1.Visible = false;
+                                lblId1.Visible = false;
+                                lblStatus1.Visible = false;
                                 ordersPb[0].Status = 3;
                                 context.Entry(ordersPb[0]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -658,10 +728,13 @@ namespace CaffeBar
                         }
                         if (ordersPb[1].Status == 2)
                         {
-                            timeElapsed2++;
+
                             pb2.Value = timeElapsed2;
                             if (pb2.Value == pb2.Maximum)
                             {
+                                pb2.Visible = false;
+                                lblId2.Visible = false;
+                                lblStatus2.Visible = false;
                                 ordersPb[1].Status = 3;
                                 context.Entry(ordersPb[1]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -669,10 +742,13 @@ namespace CaffeBar
                         }
                         if (ordersPb[2].Status == 2)
                         {
-                            timeElapsed3++;
+
                             pb3.Value = timeElapsed3;
                             if (pb3.Value == pb3.Maximum)
                             {
+                                pb3.Visible = false;
+                                lblId3.Visible = false;
+                                lblStatus3.Visible = false;
                                 ordersPb[2].Status = 3;
                                 context.Entry(ordersPb[2]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -682,10 +758,13 @@ namespace CaffeBar
                     case 4:
                         if (ordersPb[0].Status == 2)
                         {
-                            timeElapsed1++;
+
                             pb1.Value = timeElapsed1;
-                            if(pb1.Value == pb1.Maximum)
+                            if (pb1.Value == pb1.Maximum)
                             {
+                                pb1.Visible = false;
+                                lblId1.Visible = false;
+                                lblStatus1.Visible = false;
                                 ordersPb[0].Status = 3;
                                 context.Entry(ordersPb[0]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -693,10 +772,13 @@ namespace CaffeBar
                         }
                         if (ordersPb[1].Status == 2)
                         {
-                            timeElapsed2++;
+
                             pb2.Value = timeElapsed2;
                             if (pb2.Value == pb2.Maximum)
                             {
+                                pb2.Visible = false;
+                                lblId2.Visible = false;
+                                lblStatus2.Visible = false;
                                 ordersPb[1].Status = 3;
                                 context.Entry(ordersPb[1]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -705,10 +787,13 @@ namespace CaffeBar
                         }
                         if (ordersPb[2].Status == 2)
                         {
-                            timeElapsed3++;
+
                             pb3.Value = timeElapsed3;
                             if (pb3.Value == pb3.Maximum)
                             {
+                                pb3.Visible = false;
+                                lblId3.Visible = false;
+                                lblStatus3.Visible = false;
                                 ordersPb[2].Status = 3;
                                 context.Entry(ordersPb[2]).State = EntityState.Modified;
                                 context.SaveChanges();
@@ -716,12 +801,22 @@ namespace CaffeBar
                         }
                         if (ordersPb[3].Status == 2)
                         {
-                            timeElapsed4++;
+                            
+
                             pb4.Value = timeElapsed4;
+                            if (pb4.Value == pb4.Maximum)
+                            {
+                                pb4.Visible = false;
+                                lblId4.Visible = false;
+                                lblStatus4.Visible = false;
+                                ordersPb[3].Status = 3;
+                                context.Entry(ordersPb[3]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+
                         }
                         break;
-
-            }
+                }
 
             }
 
@@ -740,7 +835,7 @@ namespace CaffeBar
             using (var context = new ModelContext())
             {
                 Customer customer = context.Customer.Where(c => c.LoggedIn == 1).FirstOrDefault();
-                ordersPb = context.Orders.Where(o => o.CustId == customer.CustId && o.TimeToDeliver!=null).ToList();
+                ordersPb = context.Orders.Where(o => o.CustId == customer.CustId && o.TimeToDeliver != null).ToList();
                 StringBuilder sb = new StringBuilder();
                 lblId1.Visible = false;
                 lblId2.Visible = false;
@@ -773,10 +868,6 @@ namespace CaffeBar
                         {
                             lblStatus1.Text = "pending";
                         }
-                        else
-                        {
-                            lblStatus1.Text = "delivered";
-                        }
                         sb.Clear();
                         lblId1.Visible = true;
                         lblStatus1.Visible = true;
@@ -797,10 +888,6 @@ namespace CaffeBar
                         else if (ordersPb[i].Status == 1)
                         {
                             lblStatus2.Text = "pending";
-                        }
-                        else
-                        {
-                            lblStatus2.Text = "delivered";
                         }
                         sb.Clear();
                         lblId2.Visible = true;
@@ -823,10 +910,6 @@ namespace CaffeBar
                         {
                             lblStatus3.Text = "pending";
                         }
-                        else
-                        {
-                            lblStatus3.Text = "delivered";
-                        }
                         sb.Clear();
                         lblId3.Visible = true;
                         lblStatus3.Visible = true;
@@ -848,10 +931,6 @@ namespace CaffeBar
                         {
                             lblStatus4.Text = "pending";
                         }
-                        else
-                        {
-                            lblStatus4.Text = "delivered";
-                        }
                         sb.Clear();
                         lblId4.Visible = true;
                         lblStatus4.Visible = true;
@@ -862,8 +941,6 @@ namespace CaffeBar
                         }
                     }
                 }
-
-
 
             }
         }

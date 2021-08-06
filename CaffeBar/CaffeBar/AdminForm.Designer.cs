@@ -71,6 +71,7 @@ namespace CaffeBar
             this.lblLateOrders = new System.Windows.Forms.Label();
             this.lblCompletedOrdersOnTime = new System.Windows.Forms.Label();
             this.lblOrderHistory = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -446,7 +447,7 @@ namespace CaffeBar
             this.groupBox6.Controls.Add(this.btnOrdersHistory);
             this.groupBox6.Location = new System.Drawing.Point(224, 443);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(179, 236);
+            this.groupBox6.Size = new System.Drawing.Size(191, 236);
             this.groupBox6.TabIndex = 41;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ORDER HISTORY";
@@ -456,27 +457,28 @@ namespace CaffeBar
             this.lblLateOrders.AutoSize = true;
             this.lblLateOrders.Location = new System.Drawing.Point(10, 125);
             this.lblLateOrders.Name = "lblLateOrders";
-            this.lblLateOrders.Size = new System.Drawing.Size(121, 13);
+            this.lblLateOrders.Size = new System.Drawing.Size(0, 13);
             this.lblLateOrders.TabIndex = 42;
-            this.lblLateOrders.Text = "Completed orders late: 0";
             // 
             // lblCompletedOrdersOnTime
             // 
             this.lblCompletedOrdersOnTime.AutoSize = true;
             this.lblCompletedOrdersOnTime.Location = new System.Drawing.Point(10, 83);
             this.lblCompletedOrdersOnTime.Name = "lblCompletedOrdersOnTime";
-            this.lblCompletedOrdersOnTime.Size = new System.Drawing.Size(138, 13);
+            this.lblCompletedOrdersOnTime.Size = new System.Drawing.Size(0, 13);
             this.lblCompletedOrdersOnTime.TabIndex = 41;
-            this.lblCompletedOrdersOnTime.Text = "Completed orders on time: 0";
             // 
             // lblOrderHistory
             // 
             this.lblOrderHistory.AutoSize = true;
             this.lblOrderHistory.Location = new System.Drawing.Point(7, 47);
             this.lblOrderHistory.Name = "lblOrderHistory";
-            this.lblOrderHistory.Size = new System.Drawing.Size(154, 13);
+            this.lblOrderHistory.Size = new System.Drawing.Size(0, 13);
             this.lblOrderHistory.TabIndex = 0;
-            this.lblOrderHistory.Text = "Total number of orders made: 0";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
             // 
             // AdminForm
             // 
@@ -553,5 +555,6 @@ namespace CaffeBar
         private System.Windows.Forms.Label lblOrderHistory;
         private System.Windows.Forms.Button btnOrdersHistory;
         private System.Windows.Forms.Label lblLateOrders;
+        private System.Windows.Forms.Timer timer1;
     }
 }

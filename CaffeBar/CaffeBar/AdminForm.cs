@@ -19,6 +19,10 @@ namespace CaffeBar
 {
     public partial class AdminForm : Form
     {
+        int timeElapsed1;
+        int timeElapsed2;
+        int timeElapsed3;
+        int timeElapsed4;
         public static int timeOfDelivery;
         public static string orderId;
         public static Order order;
@@ -28,23 +32,27 @@ namespace CaffeBar
         public static List<Order> deliveredOrders = new List<Order>();
         public static Dictionary<int, List<string>> receipts = new Dictionary<int, List<string>>();
         Random rand = new Random();
-        int helper1 = 0;
-        int helper2 = 0;
-        int helper3 = 0;
         public AdminForm()
         {
             InitializeComponent();
+            updateLabels();
             loadInformations();
-            lblOrderHistory.Text = String.Format("Total number of orders made: {0}", Properties.Settings.Default.totalOrdersMade);
-            lblLateOrders.Text = String.Format("Completed orders late: {0}", Properties.Settings.Default.lateOrdersMade);
-            lblCompletedOrdersOnTime.Text = String.Format("Complete orders on time: {0}", Properties.Settings.Default.ordersOnTimeMade);
-            helper1 = Properties.Settings.Default.totalOrdersMade;
-            helper2 = Properties.Settings.Default.lateOrdersMade;
-            helper3 = Properties.Settings.Default.ordersOnTimeMade;
+/*            timer1.Start();*/
         }
 
         private void loadInformations()
         {
+
+/*            timeElapsed1 = Properties.Settings.Default.timeElapsed1;
+            timeElapsed2 = Properties.Settings.Default.timeElapsed2;
+            timeElapsed3 = Properties.Settings.Default.timeElapsed3;
+            timeElapsed4 = Properties.Settings.Default.timeElapsed4;*/
+
+            lbTablesAF.Items.Clear();
+            lbReservationsAF.Items.Clear();
+            lbOrdersAF.Items.Clear();
+            cbProCatAF.Items.Clear();
+
             using (var context = new ModelContext())
             {
                 List<Table> tables = context.Tables.ToList();
@@ -77,6 +85,11 @@ namespace CaffeBar
         bool flag = false;
         private void btnLogoutAF_Click(object sender, EventArgs e)
         {
+/*            Properties.Settings.Default.timeElapsed1 = timeElapsed1;
+            Properties.Settings.Default.timeElapsed2 = timeElapsed2;
+            Properties.Settings.Default.timeElapsed3 = timeElapsed3;
+            Properties.Settings.Default.timeElapsed4 = timeElapsed4;
+            timer1.Stop();*/
             using (var context = new ModelContext())
             {
                 Employee employee = context.Employee.Where(em => em.LoggedIn == 1 && em.EmpName==tbLoggedAdminAF.Text.ToLower()).FirstOrDefault();
@@ -85,10 +98,17 @@ namespace CaffeBar
                 context.SaveChanges();
                 Close();
             }
+         
+            
         }
 
         private void AdminForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+/*            Properties.Settings.Default.timeElapsed1 = timeElapsed1;
+            Properties.Settings.Default.timeElapsed2 = timeElapsed2;
+            Properties.Settings.Default.timeElapsed3 = timeElapsed3;
+            Properties.Settings.Default.timeElapsed4 = timeElapsed4;
+            timer1.Stop();*/
             if (flag == true)
             {
                 return;
@@ -104,6 +124,8 @@ namespace CaffeBar
                 }
             }
             
+
+
         }
 
         private void btnAddCatAF_Click(object sender, EventArgs e)
@@ -126,16 +148,18 @@ namespace CaffeBar
                     MessageBox.Show("Categroy added succesfully");
                 }
 
-                lbTablesAF.Items.Clear();
-                lbReservationsAF.Items.Clear();
-                lbOrdersAF.Items.Clear();
-                cbProCatAF.Items.Clear();
                 loadInformations();
             }
         }
 
         private void btnViewTableAF_Click(object sender, EventArgs e)
         {
+            if (lbTablesAF.SelectedIndex == -1)
+            {
+                MessageBox.Show("No table is selected");
+                return;
+            }
+
             using (var context = new ModelContext())
             {
                 Table t = (Table)lbTablesAF.SelectedItem;
@@ -273,6 +297,11 @@ namespace CaffeBar
 
         private void btnViewOrderAF_Click(object sender, EventArgs e)
         {
+            if (lbOrdersAF.SelectedIndex == -1)
+            {
+                MessageBox.Show("No order is selected");
+                return;
+            }
             using (var context = new ModelContext())
             {
                 OrderDetailsForm odf = new OrderDetailsForm();
@@ -477,16 +506,17 @@ namespace CaffeBar
                         return;
                     }
                     
-                    order.Status = 2;
+                    order.Status = 2; // order is delivering
                     context.Entry(order).State = EntityState.Modified;
                     context.SaveChanges();
 
                 }
                 order = o;
-                updateLabels(o.TimeToDeliver > 25);
+                updateLabels();
                 lbOrdersAF.SelectedIndex = -1;
                 MessageBox.Show("Order deivered successfully");
                 deliveredOrders.Add(o);
+
             }
             else
             {
@@ -500,49 +530,19 @@ namespace CaffeBar
             form.ShowDialog();
         }
 
-        private void updateLabels(bool isLate)
+        private void updateLabels()
         {
             List<Order> list = new List<Order>();
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-EITPB7M;Initial Catalog=CaffeBar;Integrated Security=True"))
-            {
-                var context = new ModelContext();
-                connection.Open();
-                String query = "SELECT * FROM Orders o WHERE o.timeToDeliver!=null AND o.status = 3";
-                SqlCommand sql = new SqlCommand(query, connection);
-                SqlDataReader reader = sql.ExecuteReader();
-                while(reader.Read())
-                {
-                    Order order = new Order();
-                    order.OrderId = Convert.ToInt32(reader["orderId"]);
-                    order.EmpId = Convert.ToInt32(reader["empId"]);
-                    order.TableId = Convert.ToInt32(reader["tableId"]);
-                    order.Status = Convert.ToInt32(reader["status"]);
-                    order.TimeToDeliver = Convert.ToInt32(reader["timeToDeliver"]);
-                    order.OrderAddress = reader["orderAddress"].ToString();
-                    order.OrderPrice = Convert.ToInt32(reader["orderPrice"]);
-                    list.Add(order);
 
-                }
+                var context = new ModelContext();
+                list = context.Orders.Where(o => o.Status == 3).ToList();
                 totalOrders = list.Count;
-                ordersLate = list.Where(order => order.TimeToDeliver > 25).Count();
-                ordersOnTime = list.Where(order => order.TimeToDeliver <= 25).Count();
-                if (isLate)
-                {
-                    lblLateOrders.Text = String.Format("Completed orders late: {0}", ordersLate + helper2);
-                }
-                else
-                {
-                    lblCompletedOrdersOnTime.Text = String.Format("Complete orders on time: {0}", ordersOnTime + helper3);
-                }
-                lblOrderHistory.Text = String.Format("Total number of orders made: {0}",  totalOrders + helper1);
-                Properties.Settings.Default.totalOrdersMade = totalOrders + helper1;
-                Properties.Settings.Default.lateOrdersMade = ordersLate + helper2;
-                Properties.Settings.Default.ordersOnTimeMade = ordersOnTime + helper3;
-                lbTablesAF.Items.Clear();
-                lbReservationsAF.Items.Clear();
-                lbOrdersAF.Items.Clear();
-                loadInformations();
-            }
+                ordersLate = list.Where(order => order.TimeToDeliver!=null && order.TimeToDeliver > 25).Count();
+                ordersOnTime = list.Where(order => order.TimeToDeliver!=null && order.TimeToDeliver <= 25).Count();
+                lblLateOrders.Text = String.Format("Completed orders late: {0}", ordersLate);
+                lblCompletedOrdersOnTime.Text = String.Format("Complete orders on time: {0}", ordersOnTime);
+                lblOrderHistory.Text = String.Format("Total number of orders made: {0}",  totalOrders);
+
         }
 
         private void btnReceiptOrderAF_Click(object sender, EventArgs e)
@@ -624,11 +624,16 @@ namespace CaffeBar
                     MessageBox.Show("Order has not been delivered! Deliver it first");
                     return;
                 }
-                lbTablesAF.Items.Clear();
-                lbReservationsAF.Items.Clear();
-                lbOrdersAF.Items.Clear();
                 loadInformations();
             }
         }
+/*
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timeElapsed1++;
+            timeElapsed2++;
+            timeElapsed3++;
+            timeElapsed4++;
+        }*/
     }
 }

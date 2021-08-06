@@ -198,3 +198,40 @@ C:\Users\User\Desktop\VPCaffeBar\Caffe-Bar-VP-\CaffeBar\CaffeBar\obj\Debug\Caffe
 C:\Users\User\Desktop\VPCaffeBar\Caffe-Bar-VP-\CaffeBar\CaffeBar\obj\Debug\CaffeBar.pdb
 C:\Users\User\Desktop\VPCaffeBar\Caffe-Bar-VP-\CaffeBar\CaffeBar\obj\Debug\CaffeBar.OrderHistoryForm.resources
 C:\Users\User\Desktop\VPCaffeBar\Caffe-Bar-VP-\CaffeBar\CaffeBar\obj\Debug\CaffeBar.ReceiptForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP-\CaffeBar\CaffeBar\obj\Debug\CaffeBar.OrderHistoryForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP-\CaffeBar\CaffeBar\obj\Debug\CaffeBar.ReceiptForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.csprojAssemblyReference.cache
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.AddTableForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.AdminForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.CustomerForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Form1.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.Category.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.Customers.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.Employees.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.Orders.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.Products.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.ProductsInOrder.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.Reservations.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.ProductInReservation.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.Tables.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.Orders1.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.EmployeesLoggedIn.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Migrations.CustomersLoggedIn.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.OrderDetailsForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.OrderHistoryForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.Properties.Resources.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.ReceiptForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.ReservationDetailsForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.TableInfoForm.resources
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.csproj.GenerateResource.cache
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.csproj.CoreCompileInputs.cache
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.exe
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.pdb
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\bin\Debug\CaffeBar.exe.config
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\bin\Debug\CaffeBar.exe
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\bin\Debug\CaffeBar.pdb
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\bin\Debug\EntityFramework.dll
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\bin\Debug\EntityFramework.xml
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Kenii\Desktop\Caffe-Bar-VP- - Copy\CaffeBar\CaffeBar\obj\Debug\CaffeBar.csproj.CopyComplete

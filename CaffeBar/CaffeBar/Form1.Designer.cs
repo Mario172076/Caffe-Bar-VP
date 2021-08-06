@@ -59,6 +59,7 @@ namespace CaffeBar
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbPromotionImage = new System.Windows.Forms.GroupBox();
             this.pbPromotion = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -338,6 +339,11 @@ namespace CaffeBar
             this.pbPromotion.TabIndex = 0;
             this.pbPromotion.TabStop = false;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,6 +396,7 @@ namespace CaffeBar
         public System.Windows.Forms.TextBox tbUsernameLogin;
         private System.Windows.Forms.GroupBox gbPromotionImage;
         private System.Windows.Forms.PictureBox pbPromotion;
+        public System.Windows.Forms.Timer timer1;
     }
 }
 

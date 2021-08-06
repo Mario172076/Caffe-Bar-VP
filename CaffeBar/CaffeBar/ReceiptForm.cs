@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CaffeBar.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,35 +16,57 @@ namespace CaffeBar
         public ReceiptForm()
         {
             InitializeComponent();
-            int loggedInCustomer = CustomerForm.loggedIn;
-            Dictionary<int, List<string>> dict = AdminForm.receipts;
-            List<string> list = new List<string>();
-            try
-            {
-                list = dict[loggedInCustomer];
-            }
-            catch (Exception e)
-            {
-                return;
-            }
-            List<StringForDataGridView> newList = new List<StringForDataGridView>();
-            foreach (String el in list)
-            {
-                newList.Add(new StringForDataGridView(el));
-            }
-            var bindingList = new BindingList<StringForDataGridView>(newList);
-            var source = new BindingSource(bindingList, null);
-            dataGridView1.DataSource = source;
+            loadInformations();
+
         }
 
-        class StringForDataGridView
+        public void loadInformations()
         {
-            string _value;
-            public string Value { get { return _value; } set { _value = value; } }
-            public StringForDataGridView(String s)
+            Random rand = new Random();
+            using (var context = new ModelContext())
             {
-                _value = s;
+                Customer customer = context.Customer.Where(c => c.LoggedIn == 1).FirstOrDefault();
+                List<Order> orders = context.Orders.Where(o => o.CustId == customer.CustId && o.Status == 3).ToList();
+                List<Employee> employees = context.Employee.ToList();
+                Employee employee = new Employee();
+                foreach (Order o in orders)
+                {
+
+                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                    row.Cells[0].Value = rand.Next();
+                    row.Cells[1].Value = o.OrderId;
+                    foreach (Employee emp in employees)
+                    {
+                        if (o.EmpId == emp.EmpId)
+                        {
+                            employee = emp;
+                            break;
+                        }
+                          
+                        
+                    }
+                    row.Cells[2].Value = employee.EmpName;
+                    List < ProductsInOrder > productsInOrder = context.ProductsInOrder.Where(pio => pio.OrderId == o.OrderId).ToList();
+                    StringBuilder sb = new StringBuilder();
+                    foreach (ProductsInOrder product in productsInOrder)
+                    {                       
+                        Product productt = new Product();
+                        productt = context.Products.Where(p => p.ProId == product.ProductId).FirstOrDefault();
+                        sb.Append("'");
+                        sb.Append(productt.ProName);
+                        sb.Append("'");
+                        sb.Append(" ");
+                        
+                    }
+                    row.Cells[3].Value = sb.ToString();
+                    row.Cells[4].Value = o.OrderPrice;
+                    dataGridView1.Rows.Add(row);
+
+                }
             }
         }
+
     }
-}
+
+    }
+

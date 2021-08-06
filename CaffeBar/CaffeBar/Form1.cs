@@ -18,33 +18,41 @@ namespace CaffeBar
 {
     public partial class Form1 : Form
     {
+        public static int timeElapsed1;
+        public static int timeElapsed2;
+        public static int timeElapsed3;
+        public static int timeElapsed4;
         public Form1()
         {
             InitializeComponent();
+            loadInformations();
+            
+        }
 
+        public void loadInformations()
+        {
+            timeElapsed1 = Properties.Settings.Default.timeElapsed1;
+            timeElapsed2 = Properties.Settings.Default.timeElapsed2;
+            timeElapsed3 = Properties.Settings.Default.timeElapsed3;
+            timeElapsed4 = Properties.Settings.Default.timeElapsed4;
             int productID = -1;
             int productPrice = -1;
             String productName = "";
             int ageRestriction = -1;
-            using (SqlConnection DBConnect = new SqlConnection(connectionString: "Data Source=DESKTOP-EITPB7M;Initial Catalog=CaffeBar;Integrated Security=True"))
+            timer1.Start();
+            using (var context = new ModelContext())
             {
-
-                String query = "SELECT TOP(1) * FROM Products ORDER BY proId DESC";
-                SqlCommand sqlCommand = new SqlCommand(query, DBConnect);
-
-                DBConnect.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-                if (reader.Read())
+                Product product = new Product();
+                List<Product> products = context.Products.ToList();
+                foreach (Product p in products)
                 {
-                    productID = (int)reader.GetValue(0);
-                    productPrice = (int)reader.GetValue(2);
-                    productName = (string)reader.GetValue(3);
-                    ageRestriction = (int)reader.GetValue(5);
+                    product = p;
                 }
-                reader.Close();
-                DBConnect.Close();
+                productID = product.ProId;
+                productPrice = product.ProPrice;
+                productName = product.ProName;
+                ageRestriction = product.AgeRestrictions;
             }
-
             // slikite mora da se vo jpg format
             String imageURL = "..\\img\\" + productID + ".jpg";
             if (File.Exists(imageURL))
@@ -70,6 +78,11 @@ namespace CaffeBar
 
         private void btnLoginF1_Click(object sender, EventArgs e)
         {
+            timeElapsed1 = Properties.Settings.Default.timeElapsed1;
+            timeElapsed2 = Properties.Settings.Default.timeElapsed2;
+            timeElapsed3 = Properties.Settings.Default.timeElapsed3;
+            timeElapsed4 = Properties.Settings.Default.timeElapsed4;
+
             using (var context = new ModelContext())
             {
                 //ne prepoznava golema bukva
@@ -344,6 +357,19 @@ namespace CaffeBar
             }
         }
 
-       
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timeElapsed1++;
+            timeElapsed2++;
+            timeElapsed3++;
+            timeElapsed4++;
+            Properties.Settings.Default.timeElapsed1 = timeElapsed1;
+            Properties.Settings.Default.timeElapsed2 = timeElapsed2;
+            Properties.Settings.Default.timeElapsed3 = timeElapsed3;
+            Properties.Settings.Default.timeElapsed4 = timeElapsed4;
+
+        }
+
+
     }
 }

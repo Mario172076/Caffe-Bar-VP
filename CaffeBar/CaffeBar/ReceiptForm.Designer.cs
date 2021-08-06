@@ -30,6 +30,11 @@
         {
             this.lblReceipts = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.receiptId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.products = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,10 +53,46 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.receiptId,
+            this.orderId,
+            this.employeeName,
+            this.products,
+            this.price});
             this.dataGridView1.Location = new System.Drawing.Point(148, 151);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(440, 150);
             this.dataGridView1.TabIndex = 3;
+            // 
+            // receiptId
+            // 
+            this.receiptId.HeaderText = "Receipt Id";
+            this.receiptId.Name = "receiptId";
+            this.receiptId.Width = 81;
+            // 
+            // orderId
+            // 
+            this.orderId.HeaderText = "Order ID";
+            this.orderId.Name = "orderId";
+            this.orderId.Width = 72;
+            // 
+            // employeeName
+            // 
+            this.employeeName.HeaderText = "Employee";
+            this.employeeName.Name = "employeeName";
+            this.employeeName.Width = 78;
+            // 
+            // products
+            // 
+            this.products.HeaderText = "Products";
+            this.products.Name = "products";
+            this.products.Width = 74;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "Price";
+            this.price.Name = "price";
+            this.price.Width = 56;
             // 
             // ReceiptForm
             // 
@@ -72,5 +113,10 @@
 
         private System.Windows.Forms.Label lblReceipts;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn receiptId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn products;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
     }
 }
