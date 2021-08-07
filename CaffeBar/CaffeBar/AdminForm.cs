@@ -23,6 +23,8 @@ namespace CaffeBar
         int timeElapsed2;
         int timeElapsed3;
         int timeElapsed4;
+        int counterDeliver = 0;
+        int counterReceipt = 0;
         public static int timeOfDelivery;
         public static string orderId;
         public static Order order;
@@ -37,16 +39,11 @@ namespace CaffeBar
             InitializeComponent();
             updateLabels();
             loadInformations();
-/*            timer1.Start();*/
         }
 
         private void loadInformations()
         {
 
-/*            timeElapsed1 = Properties.Settings.Default.timeElapsed1;
-            timeElapsed2 = Properties.Settings.Default.timeElapsed2;
-            timeElapsed3 = Properties.Settings.Default.timeElapsed3;
-            timeElapsed4 = Properties.Settings.Default.timeElapsed4;*/
 
             lbTablesAF.Items.Clear();
             lbReservationsAF.Items.Clear();
@@ -85,11 +82,7 @@ namespace CaffeBar
         bool flag = false;
         private void btnLogoutAF_Click(object sender, EventArgs e)
         {
-/*            Properties.Settings.Default.timeElapsed1 = timeElapsed1;
-            Properties.Settings.Default.timeElapsed2 = timeElapsed2;
-            Properties.Settings.Default.timeElapsed3 = timeElapsed3;
-            Properties.Settings.Default.timeElapsed4 = timeElapsed4;
-            timer1.Stop();*/
+
             using (var context = new ModelContext())
             {
                 Employee employee = context.Employee.Where(em => em.LoggedIn == 1 && em.EmpName==tbLoggedAdminAF.Text.ToLower()).FirstOrDefault();
@@ -104,11 +97,7 @@ namespace CaffeBar
 
         private void AdminForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-/*            Properties.Settings.Default.timeElapsed1 = timeElapsed1;
-            Properties.Settings.Default.timeElapsed2 = timeElapsed2;
-            Properties.Settings.Default.timeElapsed3 = timeElapsed3;
-            Properties.Settings.Default.timeElapsed4 = timeElapsed4;
-            timer1.Stop();*/
+
             if (flag == true)
             {
                 return;
@@ -133,7 +122,13 @@ namespace CaffeBar
             using (var context = new ModelContext())
             {
                 Category cat = new Category();
+
                 cat.CatName = tbCatNameAF.Text;
+                if (cat.CatName == "")
+                {
+                    MessageBox.Show("Please enter category name");
+                    return;
+                }
                 Category category = context.Category.Where(c => c.CatName == tbCatNameAF.Text).FirstOrDefault();
                 if (category != null)
                 {
@@ -369,6 +364,252 @@ namespace CaffeBar
 
         }
 
+        private void btnDeliverOrderAF_Click(object sender, EventArgs e)
+        {
+            if (lbOrdersAF.SelectedIndex != -1)
+            {
+                Order o = (Order)lbOrdersAF.SelectedItem;
+                Random random = new Random();
+                int timeToDeliver = random.Next(minValue: 15, maxValue: 31);
+                timeOfDelivery = timeToDeliver;
+                o.TimeToDeliver = timeToDeliver;
+                // dodaj order vo FinishedOrders
+                using (var context = new ModelContext())
+                {
+                    Order order = new Order();
+                    try
+                    {
+                        order = context.Orders.Where(ord => ord.OrderId == o.OrderId && o.OrderAddress != null).FirstOrDefault();
+                        if (order == null)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show("Please select an order that can be delivered (has an address)");
+                        return;
+                    }
+
+                    order.Status = 2; // order is delivering
+                    context.Entry(order).State = EntityState.Modified;
+                    context.SaveChanges();
+
+                    int orderId = o.OrderId;
+                    Customer customer = context.Customer.Where(c => c.CustId == o.CustId).FirstOrDefault();
+                    List<Order> orders = context.Orders.Where(ord => ord.CustId == customer.CustId && ord.Status == 2).ToList();
+                    int orderCount = 0;
+                    for (int i = 0; i < orders.Count; i++)
+                    {
+
+                        if (orderId == orders[i].OrderId)
+                        {
+                            orderCount = i + 1;
+                            break;
+                        }
+                    }
+                    List<Order> orders2 = context.Orders.Where(ord => ord.CustId == customer.CustId && ord.Status == 2).ToList();
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("timeElapsed");
+                    sb.Append(orderCount);
+                    if ("timeElapsed1" == sb.ToString())
+                    {
+                        Properties.Settings.Default.timeElapsed1 = 0;
+
+                    }
+                    else if ("timeElapsed2" == sb.ToString())
+                    {
+
+                        Properties.Settings.Default.timeElapsed2 = 0;
+
+                    }
+                    else if ("timeElapsed3" == sb.ToString())
+                    {
+                        Properties.Settings.Default.timeElapsed3 = 0;
+
+                    }
+                    else if ("timeElapsed4" == sb.ToString())
+                    {
+                        Properties.Settings.Default.timeElapsed4 = 0;
+
+                    }
+                    counterDeliver++;
+                    sb.Clear();
+
+                }
+
+
+                order = o;
+                lbOrdersAF.SelectedIndex = -1;
+                MessageBox.Show("Order deivered successfully");
+                deliveredOrders.Add(o);
+
+            }
+            else
+            {
+                MessageBox.Show("No order is selected");
+            }
+        }
+
+        private void btnOrdersHistory_Click(object sender, EventArgs e)
+        {
+            OrderHistoryForm form = new OrderHistoryForm();
+            form.ShowDialog();
+        }
+
+        private void updateLabels()
+        {
+            List<Order> list = new List<Order>();
+
+            var context = new ModelContext();
+            list = context.Orders.Where(o => o.Status == 3).ToList();
+            totalOrders = list.Count;
+            ordersLate = list.Where(order => order.TimeToDeliver != null && order.TimeToDeliver > 25).Count();
+            ordersOnTime = list.Where(order => order.TimeToDeliver != null && order.TimeToDeliver <= 25).Count();
+            lblLateOrders.Text = String.Format("Completed orders late: {0}", ordersLate);
+            lblCompletedOrdersOnTime.Text = String.Format("Complete orders on time: {0}", ordersOnTime);
+            lblOrderHistory.Text = String.Format("Total number of orders made: {0}", totalOrders);
+
+        }
+
+        private void btnReceiptOrderAF_Click(object sender, EventArgs e)
+        {
+            var context = new ModelContext();
+            if (lbOrdersAF.SelectedIndex == -1)
+            {
+                MessageBox.Show("No order is selected");
+                return;
+            }
+            else
+            {
+                Order o = (Order)lbOrdersAF.SelectedItem;
+
+                if (o.OrderAddress != "" && o.OrderAddress != null && o.Status == 1)
+                {
+                    MessageBox.Show("Please deliver the order first");
+                    return;
+                }
+
+                List<Order> orders = context.Orders.Where(or => (or.TableId != null && or.Status == 1) || (or.OrderAddress != null && or.Status == 2)).ToList();
+                bool flag = false;
+                foreach (Order order in orders)
+                {
+                    if (order.OrderId == o.OrderId)
+                    {
+                        flag = true;
+                        o = order;
+                    }
+                }
+                if (flag == true)
+                {
+                    // pusti smetka
+                    StringBuilder strb = new StringBuilder();
+                    String empName = context.Employee.Where(emp => emp.EmpId == o.EmpId).Select(emp => emp.EmpName).FirstOrDefault();
+                    strb.Append("ReceiptID: ").Append(rand.Next()).Append(" OrderID: ").Append(o.OrderId).Append(" Employee Name: ").Append(empName).Append(" Products: ");
+                    List<ProductsInOrder> productsOrdered = context.ProductsInOrder.Where(x => x.OrderId == o.OrderId).ToList();
+                    List<Product> products = new List<Product>();
+                    foreach (ProductsInOrder pio in productsOrdered)
+                    {
+                        Product product = context.Products.Where(p => p.ProId == pio.ProductId).FirstOrDefault();
+                        products.Add(product);
+                    }
+
+                    foreach (Product product in products)
+                    {
+                        strb.Append(product.ProName).Append(" ");
+                    }
+                    strb.Append("Price: " + o.OrderPrice);
+                    if (receipts.ContainsKey(o.CustId))
+                    {
+                        List<string> list = receipts[o.CustId];
+                        list.Add(strb.ToString());
+                        receipts[o.CustId] = list;
+                    }
+                    else
+                    {
+                        List<string> list = new List<string>();
+                        list.Add(strb.ToString());
+                        receipts[o.CustId] = list;
+                    }
+                    o.Status = 3;
+                    Table table = new Table();
+                    if (context.Tables.Where(t => t.TableId == o.TableId).FirstOrDefault() != null)
+                    {
+                        table = context.Tables.Where(t => t.TableId == o.TableId).FirstOrDefault();
+                        table.TableAvalaible = true;
+                        context.Entry(table).State = EntityState.Modified;
+                    }
+                    Customer customer = context.Customer.Where(c => c.CustId == o.CustId).FirstOrDefault();
+                    List<Order> orders1 = context.Orders.Where(ord => ord.CustId == customer.CustId && ord.Status == 2).ToList();
+                    List<int> orderIds1 = new List<int>();
+                    foreach(Order order in orders1)
+                    {
+                        orderIds1.Add(order.OrderId);
+                    }
+
+                    context.Entry(o).State = EntityState.Modified;
+                    context.SaveChanges();
+
+                    MessageBox.Show("Receipt delivered successfully");
+
+                    Customer customerr = context.Customer.Where(c => c.CustId == o.CustId).FirstOrDefault();
+                    List<Order> orders2 = context.Orders.Where(ord => ord.CustId == customerr.CustId && ord.Status == 2).ToList();
+                    List<int> orderIds2 = new List<int>();
+                    int position = 0;
+                    foreach (Order order in orders2)
+                    {
+                        orderIds2.Add(order.OrderId);
+                    }
+                    for(int i=0; i<orderIds1.Count; i++)
+                    {
+                        if (!orderIds2.Contains(orderIds1[i]))
+                        {
+                            position = i + 1;
+                        }
+                    }
+                    timeElapsed1 = Properties.Settings.Default.timeElapsed1;
+                    timeElapsed2 = Properties.Settings.Default.timeElapsed2;
+                    timeElapsed3 = Properties.Settings.Default.timeElapsed3;
+                    timeElapsed4 = Properties.Settings.Default.timeElapsed4;
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("timeElapsed");
+                    sb.Append(position);
+                    if(sb.ToString() == "timeElapsed1")
+                    {
+                        timeElapsed1 = timeElapsed2;
+                        timeElapsed2 = timeElapsed3;
+                        timeElapsed3 = timeElapsed4;
+                        Properties.Settings.Default.timeElapsed1 = timeElapsed1;
+                        Properties.Settings.Default.timeElapsed2 = timeElapsed2;
+                        Properties.Settings.Default.timeElapsed3 = timeElapsed3;
+
+                    } 
+                    else if (sb.ToString() == "timeElapsed2")
+                    {
+                        timeElapsed2 = timeElapsed3;
+                        timeElapsed3 = timeElapsed4;
+                        Properties.Settings.Default.timeElapsed2 = timeElapsed2;
+                        Properties.Settings.Default.timeElapsed3 = timeElapsed3;
+
+                    } 
+                    else if (sb.ToString() == "timeElapsed3")
+                    {
+                        timeElapsed3 = timeElapsed4;
+                        Properties.Settings.Default.timeElapsed3 = timeElapsed3;
+                    } 
+
+                }
+                else
+                {
+                    MessageBox.Show("Order has not been delivered! Deliver it first");
+                    return;
+                }
+
+                updateLabels();
+                loadInformations();
+            }
+        }
+
 
         //validation for adding product and category
         private void tbCatNameAF_Validating(object sender, CancelEventArgs e)
@@ -479,161 +720,7 @@ namespace CaffeBar
             }
         }
 
-        private void btnDeliverOrderAF_Click(object sender, EventArgs e)
-        {
-            if (lbOrdersAF.SelectedIndex != -1)
-            {
-                Order o = (Order)lbOrdersAF.SelectedItem;
-                Random random = new Random();
-                int timeToDeliver = random.Next(minValue: 15, maxValue: 31);
-                timeOfDelivery = timeToDeliver;
-                o.TimeToDeliver = timeToDeliver;
-                // dodaj order vo FinishedOrders
-                using(var context = new ModelContext())
-                {
-                    Order order = new Order();
-                    try
-                    {
-                        order = context.Orders.Where(ord => ord.OrderId == o.OrderId && o.OrderAddress != null).FirstOrDefault();
-                        if (order == null)
-                        {
-                            throw new Exception();
-                        }
-                    }
-                    catch (Exception exception)
-                    {
-                        MessageBox.Show("Please select an order that can be delivered (has an address)");
-                        return;
-                    }
-                    
-                    order.Status = 2; // order is delivering
-                    context.Entry(order).State = EntityState.Modified;
-                    context.SaveChanges();
+        
 
-                }
-                order = o;
-                updateLabels();
-                lbOrdersAF.SelectedIndex = -1;
-                MessageBox.Show("Order deivered successfully");
-                deliveredOrders.Add(o);
-
-            }
-            else
-            {
-                MessageBox.Show("No order is selected");
-            }
-        }
-
-        private void btnOrdersHistory_Click(object sender, EventArgs e)
-        {
-            OrderHistoryForm form = new OrderHistoryForm();
-            form.ShowDialog();
-        }
-
-        private void updateLabels()
-        {
-            List<Order> list = new List<Order>();
-
-                var context = new ModelContext();
-                list = context.Orders.Where(o => o.Status == 3).ToList();
-                totalOrders = list.Count;
-                ordersLate = list.Where(order => order.TimeToDeliver!=null && order.TimeToDeliver > 25).Count();
-                ordersOnTime = list.Where(order => order.TimeToDeliver!=null && order.TimeToDeliver <= 25).Count();
-                lblLateOrders.Text = String.Format("Completed orders late: {0}", ordersLate);
-                lblCompletedOrdersOnTime.Text = String.Format("Complete orders on time: {0}", ordersOnTime);
-                lblOrderHistory.Text = String.Format("Total number of orders made: {0}",  totalOrders);
-
-        }
-
-        private void btnReceiptOrderAF_Click(object sender, EventArgs e)
-        {
-            var context = new ModelContext();
-            if (lbOrdersAF.SelectedIndex == -1)
-            {
-                MessageBox.Show("No order is selected");
-                return;
-            }
-            else
-            {
-                Order o = (Order)lbOrdersAF.SelectedItem;
-
-                if(o.OrderAddress!="" && o.OrderAddress != null && o.Status == 1)
-                {
-                    MessageBox.Show("Please deliver the order first");
-                    return;
-                }
-                
-                List<Order> orders = context.Orders.Where(or => (or.TableId!=null && or.Status==1) || (or.OrderAddress!=null && or.Status==2)).ToList();
-                bool flag = false;
-                foreach(Order order in orders)
-                {
-                    if (order.OrderId == o.OrderId)
-                    {
-                        flag = true;
-                        o = order;
-                    }
-                }
-                if(flag==true)
-                {
-                    // pusti smetka
-                    StringBuilder sb = new StringBuilder();
-                    String empName = context.Employee.Where(emp => emp.EmpId == o.EmpId).Select(emp => emp.EmpName).FirstOrDefault();
-                    sb.Append("ReceiptID: ").Append(rand.Next()).Append(" OrderID: ").Append(o.OrderId).Append(" Employee Name: ").Append(empName).Append(" Products: ");
-                    List<ProductsInOrder> productsOrdered = context.ProductsInOrder.Where(x => x.OrderId == o.OrderId).ToList();
-                    List<Product> products = new List<Product>();
-                    foreach (ProductsInOrder pio in productsOrdered)
-                    {
-                        Product product = context.Products.Where(p => p.ProId == pio.ProductId).FirstOrDefault();
-                        products.Add(product);
-                    }
-                   
-                    foreach (Product product in products)
-                    {
-                        sb.Append(product.ProName).Append(" ");
-                    }
-                    sb.Append("Price: " + o.OrderPrice);
-                    if (receipts.ContainsKey(o.CustId))
-                    {
-                        List<string> list = receipts[o.CustId];
-                        list.Add(sb.ToString());
-                        receipts[o.CustId] = list;
-                    }
-                    else
-                    {
-                        List<string> list = new List<string>();
-                        list.Add(sb.ToString());
-                        receipts[o.CustId] = list;
-                    }
-                    o.Status = 3;
-                    Table table = new Table();
-                    if (context.Tables.Where(t => t.TableId == o.TableId).FirstOrDefault() != null)
-                    {
-                        table = context.Tables.Where(t => t.TableId == o.TableId).FirstOrDefault();
-                        table.TableAvalaible = true;
-                        context.Entry(table).State = EntityState.Modified;
-                    }
-
-                   
-                    context.Entry(o).State = EntityState.Modified;
-                   
-                    context.SaveChanges();
-                    MessageBox.Show("Receipt delivered successfully");
-                }
-                else
-                {
-                    MessageBox.Show("Order has not been delivered! Deliver it first");
-                    return;
-                }
-                loadInformations();
-            }
-        }
-/*
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            timeElapsed1++;
-            timeElapsed2++;
-            timeElapsed3++;
-            timeElapsed4++;
-        }*/
     }
 }

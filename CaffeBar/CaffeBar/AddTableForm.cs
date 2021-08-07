@@ -97,6 +97,11 @@ namespace CaffeBar
 
         private void tbNumSeatsATF_Validating(object sender, CancelEventArgs e)
         {
+            if (tbNumSeatsATF.Text == "")
+            {
+                errorProvider1.SetError(tbNumSeatsATF, "Please enter number of seats");
+                e.Cancel = true;
+            }
             if (!tbNumSeatsATF.Text.All(char.IsDigit))
             {
                 errorProvider1.SetError(tbNumSeatsATF, "Please enter only a number");
@@ -111,6 +116,7 @@ namespace CaffeBar
 
         private void cbAvalaibleATF_Validating(object sender, CancelEventArgs e)
         {
+
             if (cbAvalaibleATF.SelectedItem == null)
             {
                 errorProvider1.SetError(cbAvalaibleATF, "Please select if table is avalaible");

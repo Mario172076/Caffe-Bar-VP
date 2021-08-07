@@ -106,7 +106,6 @@ namespace CaffeBar
         bool flag = false;
         private void btnLogoutCF_Click(object sender, EventArgs e)
         {
-  
 
             Properties.Settings.Default.timeElapsed1 = pb1.Value;
             Properties.Settings.Default.timeElapsed2 = pb2.Value;
@@ -460,6 +459,301 @@ namespace CaffeBar
             loadInformations();
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            using (var context = new ModelContext())
+            {
+                timeElapsed1 = Properties.Settings.Default.timeElapsed1;
+                timeElapsed2 = Properties.Settings.Default.timeElapsed2;
+                timeElapsed3 = Properties.Settings.Default.timeElapsed3;
+                timeElapsed4 = Properties.Settings.Default.timeElapsed4;
+                ordersPb = context.Orders.Where(o => o.CustId == customer.CustId && o.TimeToDeliver != null && o.Status != 3).ToList();
+
+                switch (ordersPb.Count)
+                {
+                    case 0:
+                        return;
+                    case 1:
+                        if (ordersPb[0].Status == 2)
+                        {
+
+                            pb1.Value = timeElapsed1;
+                            if (pb1.Value == pb1.Maximum)
+                            {
+                                pb1.Visible = false;
+                                lblId1.Visible = false;
+                                lblStatus1.Visible = false;
+                                ordersPb[0].Status = 3;
+                                context.Entry(ordersPb[0]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+                        }
+                        break;
+                    case 2:
+                        if (ordersPb[0].Status == 2)
+                        {
+
+                            pb1.Value = timeElapsed1;
+                            if (pb1.Value == pb1.Maximum)
+                            {
+                                pb1.Visible = false;
+                                lblId1.Visible = false;
+                                lblStatus1.Visible = false;
+                                ordersPb[0].Status = 3;
+                                context.Entry(ordersPb[0]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+                        }
+                        if (ordersPb[1].Status == 2)
+                        {
+
+                            pb2.Value = timeElapsed2;
+                            if (pb2.Value == pb2.Maximum)
+                            {
+                                pb2.Visible = false;
+                                lblId2.Visible = false;
+                                lblStatus2.Visible = false;
+                                ordersPb[1].Status = 3;
+                                context.Entry(ordersPb[1]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+                        }
+                        break;
+                    case 3:
+                        if (ordersPb[0].Status == 2)
+                        {
+
+                            pb1.Value = timeElapsed1;
+                            if (pb1.Value == pb1.Maximum)
+                            {
+                                pb1.Visible = false;
+                                lblId1.Visible = false;
+                                lblStatus1.Visible = false;
+                                ordersPb[0].Status = 3;
+                                context.Entry(ordersPb[0]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+                        }
+                        if (ordersPb[1].Status == 2)
+                        {
+
+                            pb2.Value = timeElapsed2;
+                            if (pb2.Value == pb2.Maximum)
+                            {
+                                pb2.Visible = false;
+                                lblId2.Visible = false;
+                                lblStatus2.Visible = false;
+                                ordersPb[1].Status = 3;
+                                context.Entry(ordersPb[1]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+                        }
+                        if (ordersPb[2].Status == 2)
+                        {
+
+                            pb3.Value = timeElapsed3;
+                            if (pb3.Value == pb3.Maximum)
+                            {
+                                pb3.Visible = false;
+                                lblId3.Visible = false;
+                                lblStatus3.Visible = false;
+                                ordersPb[2].Status = 3;
+                                context.Entry(ordersPb[2]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+                        }
+                        break;
+                    case 4:
+                        if (ordersPb[0].Status == 2)
+                        {
+
+                            pb1.Value = timeElapsed1;
+                            if (pb1.Value == pb1.Maximum)
+                            {
+                                pb1.Visible = false;
+                                lblId1.Visible = false;
+                                lblStatus1.Visible = false;
+                                ordersPb[0].Status = 3;
+                                context.Entry(ordersPb[0]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+                        }
+                        if (ordersPb[1].Status == 2)
+                        {
+
+                            pb2.Value = timeElapsed2;
+                            if (pb2.Value == pb2.Maximum)
+                            {
+                                pb2.Visible = false;
+                                lblId2.Visible = false;
+                                lblStatus2.Visible = false;
+                                ordersPb[1].Status = 3;
+                                context.Entry(ordersPb[1]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+
+                        }
+                        if (ordersPb[2].Status == 2)
+                        {
+
+                            pb3.Value = timeElapsed3;
+                            if (pb3.Value == pb3.Maximum)
+                            {
+                                pb3.Visible = false;
+                                lblId3.Visible = false;
+                                lblStatus3.Visible = false;
+                                ordersPb[2].Status = 3;
+                                context.Entry(ordersPb[2]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+                        }
+                        if (ordersPb[3].Status == 2)
+                        {
+
+
+                            pb4.Value = timeElapsed4;
+                            if (pb4.Value == pb4.Maximum)
+                            {
+                                pb4.Visible = false;
+                                lblId4.Visible = false;
+                                lblStatus4.Visible = false;
+                                ordersPb[3].Status = 3;
+                                context.Entry(ordersPb[3]).State = EntityState.Modified;
+                                context.SaveChanges();
+                            }
+
+                        }
+                        break;
+                }
+
+            }
+
+        }
+
+        private void btnReceipts_Click(object sender, EventArgs e)
+        {
+            var context = new ModelContext();
+            loggedIn = context.Customer.Where(c => c.LoggedIn == 1).Select(c => c.CustId).FirstOrDefault();
+            ReceiptForm form = new ReceiptForm();
+            form.ShowDialog();
+        }
+
+        public void init()
+        {
+            using (var context = new ModelContext())
+            {
+                Customer customer = context.Customer.Where(c => c.LoggedIn == 1).FirstOrDefault();
+                ordersPb = context.Orders.Where(o => o.CustId == customer.CustId && o.TimeToDeliver != null && o.Status != 3).ToList();
+                StringBuilder sb = new StringBuilder();
+                lblId1.Visible = false;
+                lblId2.Visible = false;
+                lblId3.Visible = false;
+                lblId4.Visible = false;
+
+                lblStatus1.Visible = false;
+                lblStatus2.Visible = false;
+                lblStatus3.Visible = false;
+                lblStatus4.Visible = false;
+
+                pb1.Visible = false;
+                pb2.Visible = false;
+                pb3.Visible = false;
+                pb4.Visible = false;
+                for (int i = 0; i < ordersPb.Count; i++)
+                {
+
+                    sb.Append("lblId");
+                    sb.Append(i + 1);
+                    if (lblId1.Name == sb.ToString())
+                    {
+                        lblId1.Text = ordersPb[i].OrderId.ToString();
+                        if (ordersPb[i].Status == 2)
+                        {
+                            lblStatus1.Text = "delivering";
+
+                        }
+                        else if (ordersPb[i].Status == 1)
+                        {
+                            lblStatus1.Text = "pending";
+                        }
+                        sb.Clear();
+                        lblId1.Visible = true;
+                        lblStatus1.Visible = true;
+                        pb1.Visible = true;
+                        if (ordersPb[i].TimeToDeliver != null)
+                        {
+                            pb1.Maximum = (int)ordersPb[i].TimeToDeliver * 60;
+                        }
+                    }
+                    if (lblId2.Name == sb.ToString())
+                    {
+                        lblId2.Text = ordersPb[i].OrderId.ToString();
+                        if (ordersPb[i].Status == 2)
+                        {
+                            lblStatus2.Text = "delivering";
+
+                        }
+                        else if (ordersPb[i].Status == 1)
+                        {
+                            lblStatus2.Text = "pending";
+                        }
+                        sb.Clear();
+                        lblId2.Visible = true;
+                        lblStatus2.Visible = true;
+                        pb2.Visible = true;
+                        if (ordersPb[i].TimeToDeliver != null)
+                        {
+                            pb2.Maximum = (int)ordersPb[i].TimeToDeliver * 60;
+                        }
+                    }
+                    if (lblId3.Name == sb.ToString())
+                    {
+                        lblId3.Text = ordersPb[i].OrderId.ToString();
+                        if (ordersPb[i].Status == 2)
+                        {
+                            lblStatus3.Text = "delivering";
+
+                        }
+                        else if (ordersPb[i].Status == 1)
+                        {
+                            lblStatus3.Text = "pending";
+                        }
+                        sb.Clear();
+                        lblId3.Visible = true;
+                        lblStatus3.Visible = true;
+                        pb3.Visible = true;
+                        if (ordersPb[i].TimeToDeliver != null)
+                        {
+                            pb3.Maximum = (int)ordersPb[i].TimeToDeliver * 60;
+                        }
+                    }
+                    if (lblId4.Name == sb.ToString())
+                    {
+                        lblId4.Text = ordersPb[i].OrderId.ToString();
+                        if (ordersPb[i].Status == 2)
+                        {
+                            lblStatus4.Text = "delivering";
+
+                        }
+                        else if (ordersPb[i].Status == 1)
+                        {
+                            lblStatus4.Text = "pending";
+                        }
+                        sb.Clear();
+                        lblId4.Visible = true;
+                        lblStatus4.Visible = true;
+                        pb4.Visible = true;
+                        if (ordersPb[i].TimeToDeliver != null)
+                        {
+                            pb4.Maximum = (int)ordersPb[i].TimeToDeliver * 60;
+                        }
+                    }
+                }
+
+            }
+        }
+
         private void btnRemoveProResCF_Click(object sender, EventArgs e)
         {
             cbProductsResCF.Items.Clear();
@@ -650,300 +944,7 @@ namespace CaffeBar
             lbSodaCF.SelectedItems.Clear();
         }
 
-            private void timer1_Tick(object sender, EventArgs e)
-            {
-
-            using (var context = new ModelContext())
-            {
-                timeElapsed1 = Properties.Settings.Default.timeElapsed1;
-                timeElapsed2 = Properties.Settings.Default.timeElapsed2;
-                timeElapsed3 = Properties.Settings.Default.timeElapsed3;
-                timeElapsed4 = Properties.Settings.Default.timeElapsed4;
-                ordersPb = context.Orders.Where(o => o.CustId == customer.CustId && o.TimeToDeliver != null).ToList();
-
-                switch (ordersPb.Count)
-                {
-                    case 0:
-                        return;
-                    case 1:
-                        if (ordersPb[0].Status == 2)
-                        {
-
-                            pb1.Value = timeElapsed1;
-                            if (pb1.Value == pb1.Maximum)
-                            {
-                                pb1.Visible = false;
-                                lblId1.Visible = false;
-                                lblStatus1.Visible = false;
-                                ordersPb[0].Status = 3;
-                                context.Entry(ordersPb[0]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-                        }
-                        break;
-                    case 2:
-                        if (ordersPb[0].Status == 2)
-                        {
-
-                            pb1.Value = timeElapsed1;
-                            if (pb1.Value == pb1.Maximum)
-                            {
-                                pb1.Visible = false;
-                                lblId1.Visible = false;
-                                lblStatus1.Visible = false;
-                                ordersPb[0].Status = 3;
-                                context.Entry(ordersPb[0]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-                        }
-                        if (ordersPb[1].Status == 2)
-                        {
-
-                            pb2.Value = timeElapsed2;
-                            if (pb2.Value == pb2.Maximum)
-                            {
-                                pb2.Visible = false;
-                                lblId2.Visible = false;
-                                lblStatus2.Visible = false;
-                                ordersPb[1].Status = 3;
-                                context.Entry(ordersPb[1]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-                        }
-                        break;
-                    case 3:
-                        if (ordersPb[0].Status == 2)
-                        {
-
-                            pb1.Value = timeElapsed1;
-                            if (pb1.Value == pb1.Maximum)
-                            {
-                                pb1.Visible = false;
-                                lblId1.Visible = false;
-                                lblStatus1.Visible = false;
-                                ordersPb[0].Status = 3;
-                                context.Entry(ordersPb[0]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-                        }
-                        if (ordersPb[1].Status == 2)
-                        {
-
-                            pb2.Value = timeElapsed2;
-                            if (pb2.Value == pb2.Maximum)
-                            {
-                                pb2.Visible = false;
-                                lblId2.Visible = false;
-                                lblStatus2.Visible = false;
-                                ordersPb[1].Status = 3;
-                                context.Entry(ordersPb[1]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-                        }
-                        if (ordersPb[2].Status == 2)
-                        {
-
-                            pb3.Value = timeElapsed3;
-                            if (pb3.Value == pb3.Maximum)
-                            {
-                                pb3.Visible = false;
-                                lblId3.Visible = false;
-                                lblStatus3.Visible = false;
-                                ordersPb[2].Status = 3;
-                                context.Entry(ordersPb[2]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-                        }
-                        break;
-                    case 4:
-                        if (ordersPb[0].Status == 2)
-                        {
-
-                            pb1.Value = timeElapsed1;
-                            if (pb1.Value == pb1.Maximum)
-                            {
-                                pb1.Visible = false;
-                                lblId1.Visible = false;
-                                lblStatus1.Visible = false;
-                                ordersPb[0].Status = 3;
-                                context.Entry(ordersPb[0]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-                        }
-                        if (ordersPb[1].Status == 2)
-                        {
-
-                            pb2.Value = timeElapsed2;
-                            if (pb2.Value == pb2.Maximum)
-                            {
-                                pb2.Visible = false;
-                                lblId2.Visible = false;
-                                lblStatus2.Visible = false;
-                                ordersPb[1].Status = 3;
-                                context.Entry(ordersPb[1]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-
-                        }
-                        if (ordersPb[2].Status == 2)
-                        {
-
-                            pb3.Value = timeElapsed3;
-                            if (pb3.Value == pb3.Maximum)
-                            {
-                                pb3.Visible = false;
-                                lblId3.Visible = false;
-                                lblStatus3.Visible = false;
-                                ordersPb[2].Status = 3;
-                                context.Entry(ordersPb[2]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-                        }
-                        if (ordersPb[3].Status == 2)
-                        {
-                            
-
-                            pb4.Value = timeElapsed4;
-                            if (pb4.Value == pb4.Maximum)
-                            {
-                                pb4.Visible = false;
-                                lblId4.Visible = false;
-                                lblStatus4.Visible = false;
-                                ordersPb[3].Status = 3;
-                                context.Entry(ordersPb[3]).State = EntityState.Modified;
-                                context.SaveChanges();
-                            }
-
-                        }
-                        break;
-                }
-
-            }
-
-        }
-
-        private void btnReceipts_Click(object sender, EventArgs e)
-        {
-            var context = new ModelContext();
-            loggedIn = context.Customer.Where(c => c.LoggedIn == 1).Select(c => c.CustId).FirstOrDefault();
-            ReceiptForm form = new ReceiptForm();
-            form.ShowDialog();
-        }
-
-        public void init()
-        {
-            using (var context = new ModelContext())
-            {
-                Customer customer = context.Customer.Where(c => c.LoggedIn == 1).FirstOrDefault();
-                ordersPb = context.Orders.Where(o => o.CustId == customer.CustId && o.TimeToDeliver != null).ToList();
-                StringBuilder sb = new StringBuilder();
-                lblId1.Visible = false;
-                lblId2.Visible = false;
-                lblId3.Visible = false;
-                lblId4.Visible = false;
-
-                lblStatus1.Visible = false;
-                lblStatus2.Visible = false;
-                lblStatus3.Visible = false;
-                lblStatus4.Visible = false;
-
-                pb1.Visible = false;
-                pb2.Visible = false;
-                pb3.Visible = false;
-                pb4.Visible = false;
-                for (int i = 0; i < ordersPb.Count; i++)
-                {
-
-                    sb.Append("lblId");
-                    sb.Append(i + 1);
-                    if (lblId1.Name == sb.ToString())
-                    {
-                        lblId1.Text = ordersPb[i].OrderId.ToString();
-                        if (ordersPb[i].Status == 2)
-                        {
-                            lblStatus1.Text = "delivering";
-
-                        }
-                        else if (ordersPb[i].Status == 1)
-                        {
-                            lblStatus1.Text = "pending";
-                        }
-                        sb.Clear();
-                        lblId1.Visible = true;
-                        lblStatus1.Visible = true;
-                        pb1.Visible = true;
-                        if (ordersPb[i].TimeToDeliver != null)
-                        {
-                            pb1.Maximum = (int)ordersPb[i].TimeToDeliver * 60;
-                        }
-                    }
-                    if (lblId2.Name == sb.ToString())
-                    {
-                        lblId2.Text = ordersPb[i].OrderId.ToString();
-                        if (ordersPb[i].Status == 2)
-                        {
-                            lblStatus2.Text = "delivering";
-
-                        }
-                        else if (ordersPb[i].Status == 1)
-                        {
-                            lblStatus2.Text = "pending";
-                        }
-                        sb.Clear();
-                        lblId2.Visible = true;
-                        lblStatus2.Visible = true;
-                        pb2.Visible = true;
-                        if(ordersPb[i].TimeToDeliver != null)
-                        {
-                            pb2.Maximum = (int)ordersPb[i].TimeToDeliver * 60;
-                        }
-                    }
-                    if (lblId3.Name == sb.ToString())
-                    {
-                        lblId3.Text = ordersPb[i].OrderId.ToString();
-                        if (ordersPb[i].Status == 2)
-                        {
-                            lblStatus3.Text = "delivering";
-
-                        }
-                        else if (ordersPb[i].Status == 1)
-                        {
-                            lblStatus3.Text = "pending";
-                        }
-                        sb.Clear();
-                        lblId3.Visible = true;
-                        lblStatus3.Visible = true;
-                        pb3.Visible = true;
-                        if (ordersPb[i].TimeToDeliver != null)
-                        {
-                            pb3.Maximum = (int)ordersPb[i].TimeToDeliver * 60;
-                        }
-                    }
-                    if (lblId4.Name == sb.ToString())
-                    {
-                        lblId4.Text = ordersPb[i].OrderId.ToString();
-                        if (ordersPb[i].Status == 2)
-                        {
-                            lblStatus4.Text = "delivering";
-
-                        }
-                        else if (ordersPb[i].Status == 1)
-                        {
-                            lblStatus4.Text = "pending";
-                        }
-                        sb.Clear();
-                        lblId4.Visible = true;
-                        lblStatus4.Visible = true;
-                        pb4.Visible = true;
-                        if (ordersPb[i].TimeToDeliver != null)
-                        {
-                            pb4.Maximum = (int)ordersPb[i].TimeToDeliver * 60;
-                        }
-                    }
-                }
-
-            }
-        }
+            
 
        
     }

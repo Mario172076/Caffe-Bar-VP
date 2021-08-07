@@ -155,6 +155,11 @@ namespace CaffeBar
         private void tbNameReg_Validating(object sender, CancelEventArgs e)
         {
             flag = false;
+            if (tbNameReg.Text == "")
+            {
+                errorProvider1.SetError(tbNameReg, "Please enter name");
+                e.Cancel = true;
+            }
             char first = tbNameReg.Text.First();
             if (!tbNameReg.Text.All(char.IsLetter))
             {
@@ -176,6 +181,11 @@ namespace CaffeBar
         private void tbSurnameReg_Validating(object sender, CancelEventArgs e)
         {
             flag = false;
+            if (tbSurnameReg.Text == "")
+            {
+                errorProvider1.SetError(tbSurnameReg, "Please enter surname");
+                e.Cancel = true;
+            }
             char first = tbSurnameReg.Text.First();
             if (!tbSurnameReg.Text.Any(char.IsLetter))
             {
@@ -197,6 +207,11 @@ namespace CaffeBar
         private void tbEmailReg_Validating(object sender, CancelEventArgs e)
         {
             flag = false;
+            if (tbEmailReg.Text == "")
+            {
+                errorProvider1.SetError(tbEmailReg, "Please enter email");
+                e.Cancel = true;
+            }
             string email = tbEmailReg.Text;
 
             using (var context = new ModelContext())
@@ -223,6 +238,11 @@ namespace CaffeBar
         private void tbTelephoneReg_Validating(object sender, CancelEventArgs e)
         {
             flag = false;
+            if (tbTelephoneReg.Text == "")
+            {
+                errorProvider1.SetError(tbTelephoneReg, "Please enter telephone");
+                e.Cancel = true;
+            }
             string telephone = tbTelephoneReg.Text;
             using (var context = new ModelContext())
             {
@@ -248,6 +268,11 @@ namespace CaffeBar
         private void tbUsernameReg_Validating(object sender, CancelEventArgs e)
         {
             flag = false;
+            if (tbUsernameReg.Text == "")
+            {
+                errorProvider1.SetError(tbUsernameReg, "Please enter username");
+                e.Cancel = true;
+            }
             string username = tbUsernameReg.Text;
             using (var context = new ModelContext())
             {
@@ -278,6 +303,11 @@ namespace CaffeBar
         private void tbPasswordReg_Validating(object sender, CancelEventArgs e)
         {
             flag = false;
+            if (tbPasswordReg.Text == "")
+            {
+                errorProvider1.SetError(tbPasswordReg, "Please enter name");
+                e.Cancel = true;
+            }
             string password = tbPasswordReg.Text;
             if (!password.Any(char.IsUpper))
             {
@@ -304,6 +334,11 @@ namespace CaffeBar
         private void tbRepPasswordReg_Validating(object sender, CancelEventArgs e)
         {
             flag = false;
+            if (tbRepPasswordReg.Text == "")
+            {
+                errorProvider1.SetError(tbRepPasswordReg, "Please enter name");
+                e.Cancel = true;
+            }
             string password = tbPasswordReg.Text;
             string repPassword = tbRepPasswordReg.Text;
             if(!password.Equals(repPassword))
@@ -322,6 +357,11 @@ namespace CaffeBar
         {
             flag = false;
             int number;
+            if (tbAgeReg.Text == "")
+            {
+                errorProvider1.SetError(tbAgeReg, "Please enter name");
+                e.Cancel = true;
+            }
             string age = tbAgeReg.Text;
             bool succes = int.TryParse(age, out number);
             if (!age.All(char.IsDigit))
@@ -344,6 +384,11 @@ namespace CaffeBar
         private void tbAddressReg_Validating(object sender, CancelEventArgs e)
         {
             flag = false;
+            if (tbAddressReg.Text == "")
+            {
+                errorProvider1.SetError(tbAddressReg, "Please enter name");
+                e.Cancel = true;
+            }
             string address = tbAddressReg.Text;
             if (address == null)
             {
@@ -359,6 +404,10 @@ namespace CaffeBar
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            timeElapsed1 = Properties.Settings.Default.timeElapsed1;
+            timeElapsed2 = Properties.Settings.Default.timeElapsed2;
+            timeElapsed3 = Properties.Settings.Default.timeElapsed3;
+            timeElapsed4 = Properties.Settings.Default.timeElapsed4;
             timeElapsed1++;
             timeElapsed2++;
             timeElapsed3++;
