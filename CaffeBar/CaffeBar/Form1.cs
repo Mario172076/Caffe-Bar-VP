@@ -35,26 +35,14 @@ namespace CaffeBar
             timeElapsed2 = Properties.Settings.Default.timeElapsed2;
             timeElapsed3 = Properties.Settings.Default.timeElapsed3;
             timeElapsed4 = Properties.Settings.Default.timeElapsed4;
-            int productID = -1;
-            int productPrice = -1;
-            String productName = "";
-            int ageRestriction = -1;
             timer1.Start();
+            Product product = new Product();
             using (var context = new ModelContext())
             {
-                Product product = new Product();
                 List<Product> products = context.Products.ToList();
-                foreach (Product p in products)
-                {
-                    product = p;
-                }
-                productID = product.ProId;
-                productPrice = product.ProPrice;
-                productName = product.ProName;
-                ageRestriction = product.AgeRestrictions;
+                product = products[products.Count - 1];
             }
-            // slikite mora da se vo jpg format
-            String imageURL = "..\\img\\" + productID + ".jpg";
+            String imageURL = "..\\img\\" + product.CatId + ".jpg";
             if (File.Exists(imageURL))
             {
                 pbPromotion.Load(imageURL);
@@ -65,7 +53,7 @@ namespace CaffeBar
             }
             pbPromotion.SizeMode = PictureBoxSizeMode.Zoom;
             String restriction = null;
-            if (ageRestriction == 0)
+            if (product.AgeRestrictions == 0)
             {
                 restriction = "";
             }
@@ -73,7 +61,7 @@ namespace CaffeBar
             {
                 restriction = "(18+)";
             }
-            gbPromotionImage.Text = "NEW PRODUCT: " + productName + ", " + productPrice + " ден. " + restriction;
+            gbPromotionImage.Text = "NEW PRODUCT: " + product.ProName + ", " + product.ProPrice + " ден. " + restriction;
         }
 
         private void btnLoginF1_Click(object sender, EventArgs e)
