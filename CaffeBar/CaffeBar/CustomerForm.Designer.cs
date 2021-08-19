@@ -429,6 +429,7 @@ namespace CaffeBar
             this.lbBurgersCF.FormattingEnabled = true;
             this.lbBurgersCF.Location = new System.Drawing.Point(306, 166);
             this.lbBurgersCF.Name = "lbBurgersCF";
+            this.lbBurgersCF.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbBurgersCF.Size = new System.Drawing.Size(120, 95);
             this.lbBurgersCF.TabIndex = 26;
             // 
@@ -446,6 +447,7 @@ namespace CaffeBar
             this.lbPizzasCF.FormattingEnabled = true;
             this.lbPizzasCF.Location = new System.Drawing.Point(160, 166);
             this.lbPizzasCF.Name = "lbPizzasCF";
+            this.lbPizzasCF.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbPizzasCF.Size = new System.Drawing.Size(120, 95);
             this.lbPizzasCF.TabIndex = 24;
             // 
@@ -463,6 +465,7 @@ namespace CaffeBar
             this.lbSodaCF.FormattingEnabled = true;
             this.lbSodaCF.Location = new System.Drawing.Point(20, 166);
             this.lbSodaCF.Name = "lbSodaCF";
+            this.lbSodaCF.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbSodaCF.Size = new System.Drawing.Size(120, 95);
             this.lbSodaCF.TabIndex = 22;
             // 
@@ -499,6 +502,7 @@ namespace CaffeBar
             this.lbJuicesCF.FormattingEnabled = true;
             this.lbJuicesCF.Location = new System.Drawing.Point(453, 33);
             this.lbJuicesCF.Name = "lbJuicesCF";
+            this.lbJuicesCF.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbJuicesCF.Size = new System.Drawing.Size(120, 95);
             this.lbJuicesCF.TabIndex = 19;
             // 
@@ -507,6 +511,7 @@ namespace CaffeBar
             this.lbWhiskyCF.FormattingEnabled = true;
             this.lbWhiskyCF.Location = new System.Drawing.Point(306, 33);
             this.lbWhiskyCF.Name = "lbWhiskyCF";
+            this.lbWhiskyCF.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbWhiskyCF.Size = new System.Drawing.Size(120, 95);
             this.lbWhiskyCF.TabIndex = 18;
             // 
@@ -542,6 +547,7 @@ namespace CaffeBar
             this.lbCoffesCF.FormattingEnabled = true;
             this.lbCoffesCF.Location = new System.Drawing.Point(20, 33);
             this.lbCoffesCF.Name = "lbCoffesCF";
+            this.lbCoffesCF.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbCoffesCF.Size = new System.Drawing.Size(120, 95);
             this.lbCoffesCF.TabIndex = 14;
             // 

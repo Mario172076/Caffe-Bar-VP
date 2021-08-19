@@ -49,7 +49,7 @@ namespace CaffeBar
             }
             else
             {
-                pbPromotion.Load("..\\img\\error.png");
+                pbPromotion.Load("..\\img\\caffe-bar.jpg");
             }
             pbPromotion.SizeMode = PictureBoxSizeMode.Zoom;
             String restriction = null;

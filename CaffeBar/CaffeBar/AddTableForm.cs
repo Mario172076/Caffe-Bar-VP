@@ -28,6 +28,7 @@ namespace CaffeBar
             using (var context = new ModelContext())
             {
                 employees = context.Employee.ToList();
+                List<Employee> emps = new List<Employee>();
                 List<Table> tables = context.Tables.ToList();
                 foreach(Employee emp in employees)
                 {
@@ -38,18 +39,21 @@ namespace CaffeBar
                         {
                             counter++;
                             if (counter == 5)
-                            {
-                                employees.Remove(emp);
+                            {                               
                                 break;
                             }
                                 
                         }
                         
                     }
+                    if (counter != 5)
+                    {
+                        emps.Add(emp);
+                    }
                    
                 }
 
-                foreach (Employee empl in employees)
+                foreach (Employee empl in emps)
                 {
                     cbEmployeeATF.Items.Add(empl);
                 }

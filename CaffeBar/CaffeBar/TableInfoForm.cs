@@ -17,7 +17,6 @@ namespace CaffeBar
         {
             InitializeComponent();
         }
-
     }
     
 }

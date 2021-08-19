@@ -43,6 +43,8 @@ namespace CaffeBar
             lbWhiskyCF.Items.Clear();
             lbPizzasCF.Items.Clear();
             lbSodaCF.Items.Clear();
+            cbTableResCF.Items.Clear();
+            cbTableOrderCF.Items.Clear();
 
             pb1.Value = 0;
             pb2.Value = 0;
@@ -57,7 +59,7 @@ namespace CaffeBar
             using (var context = new ModelContext())
             {
 
-                List<Product> products = context.Products.Where(p => p.ProName != null).ToList();
+                List<Product> products = context.Products.Where(p => p.ProName != null && p.ProQuantity > 0).ToList();
                 foreach (Product p in products)
                 {
                     if (p.CatId == 1)
@@ -319,13 +321,13 @@ namespace CaffeBar
                 Customer cusRes = context.Customer.Where(c => c.CustName == tbResNameCF.Text).FirstOrDefault();
                 foreach (Product p in cbProductsResCF.Items)
                 {
-                    if (p.ProQuantity == 0)
-                    {
-                        MessageBox.Show("The order cannot be made because " + p.ProName + " is out of stock");
-                        return;
-                    }
+                    //if (p.ProQuantity == 0)
+                    //{
+                    //    MessageBox.Show("The order cannot be made because " + p.ProName + " is out of stock");
+                    //    return;
+                    //}
 
-                    else if (p.AgeRestrictions == 1 && int.Parse(cusRes.Age) < 18)
+                    if (p.AgeRestrictions == 1 && int.Parse(cusRes.Age) < 18)
                     {
                         MessageBox.Show("The order cannot be made because " + cusRes.CustName + " is under 18 years of age");
                         return;
@@ -355,6 +357,16 @@ namespace CaffeBar
                     {
                         p.ProQuantity++;
                     }
+                    return;
+                }
+
+                try
+                {
+                    int.Parse(tbNumPeopleResCF.Text);
+                }
+                catch(Exception ex1)
+                {
+                    MessageBox.Show("Please enter number of people");
                     return;
                 }
 
@@ -446,7 +458,7 @@ namespace CaffeBar
                 }
                 if (context.SaveChanges() > 0)
                 {
-                    MessageBox.Show("Your have ordered successfully");
+                    MessageBox.Show("Your have made a reservation successfully");
                 }
 
                 tbDateTimeResCF.Clear();

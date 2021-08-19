@@ -82,6 +82,7 @@ namespace CaffeBar
             // 
             this.tbEmployeeTIF.Location = new System.Drawing.Point(83, 216);
             this.tbEmployeeTIF.Name = "tbEmployeeTIF";
+            this.tbEmployeeTIF.ReadOnly = true;
             this.tbEmployeeTIF.Size = new System.Drawing.Size(100, 20);
             this.tbEmployeeTIF.TabIndex = 15;
             // 
@@ -98,6 +99,7 @@ namespace CaffeBar
             // 
             this.tbNumOfSeatsTIF.Location = new System.Drawing.Point(83, 138);
             this.tbNumOfSeatsTIF.Name = "tbNumOfSeatsTIF";
+            this.tbNumOfSeatsTIF.ReadOnly = true;
             this.tbNumOfSeatsTIF.Size = new System.Drawing.Size(100, 20);
             this.tbNumOfSeatsTIF.TabIndex = 11;
             // 
@@ -105,6 +107,7 @@ namespace CaffeBar
             // 
             this.tbTableNumTIF.Location = new System.Drawing.Point(83, 99);
             this.tbTableNumTIF.Name = "tbTableNumTIF";
+            this.tbTableNumTIF.ReadOnly = true;
             this.tbTableNumTIF.Size = new System.Drawing.Size(100, 20);
             this.tbTableNumTIF.TabIndex = 10;
             // 
@@ -120,6 +123,7 @@ namespace CaffeBar
             // 
             this.tbAvalaibleTIF.Location = new System.Drawing.Point(83, 177);
             this.tbAvalaibleTIF.Name = "tbAvalaibleTIF";
+            this.tbAvalaibleTIF.ReadOnly = true;
             this.tbAvalaibleTIF.Size = new System.Drawing.Size(100, 20);
             this.tbAvalaibleTIF.TabIndex = 21;
             // 
@@ -151,7 +155,6 @@ namespace CaffeBar
             this.Controls.Add(this.tbTableNumTIF);
             this.Name = "TableInfoForm";
             this.Text = "TableInfoForm";
-
             this.ResumeLayout(false);
             this.PerformLayout();
 

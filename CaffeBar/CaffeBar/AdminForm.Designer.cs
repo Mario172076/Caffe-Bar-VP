@@ -513,10 +513,6 @@ namespace CaffeBar
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lbTablesAF;
-        private System.Windows.Forms.ListBox lbOrdersAF;
-        private System.Windows.Forms.ListBox lbReservationsAF;
         private System.Windows.Forms.Button btnAddTableAF;
         private System.Windows.Forms.Button btnViewTableAF;
         private System.Windows.Forms.Button btnViewOrderAF;
@@ -556,5 +552,8 @@ namespace CaffeBar
         private System.Windows.Forms.Button btnOrdersHistory;
         private System.Windows.Forms.Label lblLateOrders;
         private System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.ListBox lbTablesAF;
+        public System.Windows.Forms.ListBox lbOrdersAF;
+        public System.Windows.Forms.ListBox lbReservationsAF;
     }
 }

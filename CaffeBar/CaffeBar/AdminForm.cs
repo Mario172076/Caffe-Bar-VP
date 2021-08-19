@@ -124,9 +124,17 @@ namespace CaffeBar
                 Category cat = new Category();
 
                 cat.CatName = tbCatNameAF.Text;
+
+
                 if (cat.CatName == "")
                 {
                     MessageBox.Show("Please enter category name");
+                    return;
+                }
+
+                if (cat.CatName.Length < 3 || cat.CatName.All(char.IsDigit))
+                {
+                    MessageBox.Show("Category name is invalid");
                     return;
                 }
                 Category category = context.Category.Where(c => c.CatName == tbCatNameAF.Text).FirstOrDefault();
@@ -271,20 +279,25 @@ namespace CaffeBar
                     return;
                 }
                 Category cat = (Category)cbProCatAF.SelectedItem;
-                try
-                {
-                    product.CatId = cat.CatId;
-                }
-                catch (Exception ex)
+                if (cat == null)
                 {
                     MessageBox.Show("Category field cannot be empty");
                     return;
                 }
+                product.CatId = cat.CatId;
                 context.Products.Add(product);
                 if(context.SaveChanges() > 0)
                 {
                     MessageBox.Show("Product added successfully");
                 }
+
+                tbProNameAF.Text = "";
+                tbProPriceAF.Text = "";
+                cbAgeResAF.SelectedItem = null;
+                tbProDescAF.Text = "";
+                tbTimeServingAF.Text = "";
+                tbProQuantityAF.Text = "";
+                cbProCatAF.SelectedItem = null;
 
             }
  
