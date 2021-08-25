@@ -225,7 +225,7 @@ AdminForm формата се состои од седум делови, од к
 
 #####3.4.B Форма за преглед на веќепостоечка маса (TableInfoForm)
 
-![Слика 6](https://github.com/Mario172076/Caffe-Bar-VP-/blob/main/CaffeBar/CaffeBar/bin/img/TableInfo.png?raw=true "Слика 6: Форма за преглед на веќепостоечка маса")
+![Слика 6](https://github.com/Mario172076/Caffe-Bar-VP-/blob/main/CaffeBar/CaffeBar/bin/img/TableInfoForm.png?raw=true "Слика 6: Форма за преглед на веќепостоечка маса")
 
 TableInfoForm формата ги прикажува сите податоци за масата којашто вработениот претходно ја селектираше. Сите податоци се прикажани во TextBox контроли освен нарачаните продукти, кои се прикажуваат во ComboBox контрола. Доколку масата е слободна, тогаш нема продукти за прикажување, па така ComboBox контролата е празна. Тоа зависи од вредноста на Available текст полето.
 
